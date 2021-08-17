@@ -42,3 +42,7 @@
 .text-last-center {
     text-align-last: center;
 }
+
+.bspacing {
+    border-spacing: 0 15px;
+}

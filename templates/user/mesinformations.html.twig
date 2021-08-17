@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %} {% block title %}Mes Informations{% endblock %} {% block body %}
+<div class="">
+    <h1 class="text-4xl pl-6 my-4 ">Mes Informations </h1>
+    <hr class="mb-10 ">
+    <h2 class="text-2xl pl-6 my-4">Informations de {{app.user.nom}} {{app.user.prenom}}</h2>
+
+    <div class="flex flex-col flex-wrap md:border-l-2 md:pl-4 gap-5 pb-7 ">
+
+        <div class="flex flex-col border-2 p-3 ">
+            <h2 class="font-medium pb-2 mb-2 border-b-2 ">Nom</h2>
+            {{ user.nom }}
+        </div>
+
+        <div class="flex flex-col border-2 p-3 ">
+            <h2 class="font-medium pb-2 mb-2 border-b-2 ">prenom</h2>
+            <div class="flex-wrap">{{ user.prenom }}</div>
+        </div>
+        <div class="flex flex-col border-2 p-3 ">
+            <h2 class="font-medium pb-2 mb-2 border-b-2 ">adresse email</h2>
+            <div class="flex-wrap">{{ user.email }} </div>
+        </div>
+
+        <a class="self-center" href="{{path('currentuser_edit')}}"> <button class="self-center w-48 bg-purple-500 hover:bg-purple-700 text-white py-1 mt-5 rounded"><i class="fas fa-edit"></i> modifier</button></a>
+    </div>
+    <a href="{{ path('currentuser_index') }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour</a> {% endblock %}

@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Entity\Commande;
 use App\Repository\UserRepository;
+use App\Repository\CommandeRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -99,4 +101,110 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
+    #[Route('user/', name: 'currentuser_index')]
+    public function myaccount()
+    {
+        if ($this->getUser() == null) {
+            return $this->redirectToRoute('app_login');
+        }
+        $user = $this->getUser();
+        return $this->renderForm('user/index.html.twig', [
+            'user' => $user,
+        ]);
+
+    }
+
+    #[Route('user/commande', name: 'currentuser_commande')]
+    public function mycommandes(CommandeRepository $commandeRepository, UserRepository $userRepository)
+    {
+        if ($this->getUser() == null) {
+            return $this->redirectToRoute('app_login');
+        }
+        $user = $userRepository->find($this->getUser());
+        $commandes = $user->getCommandes();
+
+
+        return $this->renderForm('user/commande.html.twig', [
+            'user' => $user,
+            'commandes'=> $commandes 
+        ]);
+
+    }
+
+    
+    #[Route('user/commande/detail/{id}', name: 'currentuser_commandedetail', methods: ['GET', 'POST'] )]
+    public function mycommandetails(Commande $commande, UserRepository $userRepository)
+    {
+        if ($this->getUser() == null || $this->getUser() != $commande->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+        $user = $userRepository->find($this->getUser());
+        // $details = $commande->getArticleCommandes();
+
+
+        return $this->renderForm('user/detailCommande.html.twig', [
+            'user' => $user,
+            'commande'=> $commande,
+        ]);
+
+    }
+
+    #[Route('user/info', name: 'currentuser_info')]
+    public function myinfo()
+    {
+        if ($this->getUser() == null ) {
+            return $this->redirectToRoute('app_login');
+        }
+       
+        $user = $this->getUser();
+        // $details = $commande->getArticleCommandes();
+
+
+        return $this->renderForm('user/mesinformations.html.twig', [
+            'user' => $user,
+        ]);
+
+    }
+    #[Route('user/info/edit', name: 'currentuser_edit', methods: ['GET'])]
+    public function myinfoedit(UserRepository $userRepository, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        if ($this->getUser() == null ) {
+            return $this->redirectToRoute('app_login');
+        }    
+        $user = $userRepository->find($this->getUser());
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $password = $form->get('plainPassword')->getData();
+
+            if ($password !== null) {
+                $user->setPassword(
+                    $passwordEncoder->encodePassword(
+                        $user,
+                        $password
+                    )
+                );
+
+            }
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('currentuser_info', [], Response::HTTP_SEE_OTHER);
+        }
+
+
+
+        return $this->renderForm('user/editmesinfo.html.twig', [
+            'user' => $user,
+            'form' => $form
+        ]);
+
+    }
+    
+
+
 }

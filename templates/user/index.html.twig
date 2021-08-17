@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %} {% block title %}user{% endblock %} {% block body %}
+<div class="h-">
+    <h1 class="text-4xl pl-6 my-4 ">Mon Compte </h1>
+    <hr class="mb-10 ">
+    <h2 class="text-2xl pl-6 my-4">Bienvenue {{app.user.nom}} {{app.user.prenom}}</h2>
+
+    <div class="flex flex-col md:flex-row gap-4 justify-center flex-wrap pb-7">
+        <a class="md:w-2/5 hover:bg-purple-200 hover:border-purple-300 flex flex-row justify-center items-center gap-2 border-2 p-2 shadow" href="{{path('app_logout')}}">
+            <div class="w-1/4">Se deconnecter</div> <i class="fa fa-sign-out text-2xl" aria-hidden="true"></i></a>
+        <a class="md:w-2/5 hover:bg-purple-200 hover:border-purple-300 flex flex-row justify-center items-center gap-2 border-2 p-2 shadow" href="{{path('currentuser_commande')}}">
+            <div class="w-1/4">Mes commandes</div> <i class="fas fa-box text-2xl"></i></a>
+        <a class="md:w-2/5 hover:bg-purple-200 hover:border-purple-300 flex flex-row justify-center items-center gap-2 border-2 p-2 shadow" href="{{path('currentuser_info')}}">
+            <div class="w-1/4">Mes informations</div> <i class="fas fa-user text-2xl"></i></a>
+        <a class="md:w-2/5 hover:bg-purple-200 hover:border-purple-300 flex flex-row justify-center items-center gap-2 border-2 p-2 shadow" href="">
+            <div class="w-1/4">Mes adresses</div> <i class="fas fa-address-book text-2xl"></i></a>
+    </div>
+</div>
+
+
+{% endblock %}

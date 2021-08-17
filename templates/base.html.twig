@@ -34,7 +34,7 @@
                         <li class=" hover:underline "><a href="{{path('categorie_client')}}">Booster</a></li>
                         <li class=" hover:underline "><a href="{{path('panier')}}">Mon panier</a></li>
                         {% if app.user %}
-                        <li class=" hover:underline "><a href=" ">Mon compte</a></li>
+                        <li class=" hover:underline "><a href="{{path('currentuser_index')}}">Mon compte</a></li>
                         {% else %}
                         <li class="lg:hidden hover:underline "><a href="{{path('app_login')}} ">Connexion</a></li>
                         </li>
