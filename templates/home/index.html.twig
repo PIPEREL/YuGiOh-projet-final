@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %} {% block title %}acceuil{% endblock %} {% block body %}
+<div class="carousel relative hidden lg:block bg-white w-full">
+    <div class="carousel-inner relative overflow-hidden w-full">
+        <!--Slide 1-->
+        <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
+        <div class="carousel-item absolute opacity-0 bg-purple-50" style="height:50vh;">
+            <div style="background-image:url('{{asset('img/carroussel/img350.jpg')}}');" class="block h-full w-full bg-no-repeat bg-center bg-contain text-white text-5xl text-center"></div>
+        </div>
+        <label for="carousel-3" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+        <label for="carousel-2" class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+
+        <!--Slide 2-->
+        <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
+        <div class="carousel-item absolute opacity-0 bg-purple-50" style="height:50vh;">
+            <div style="background-image:url('{{asset('img/carroussel/liov.jpg')}}');" class="block h-full w-full bg-no-repeat bg-center bg-contain text-white text-5xl text-center "></div>
+        </div>
+        <label for="carousel-1" class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto ">‹</label>
+        <label for="carousel-3" class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto ">›</label>
+
+        <!--Slide 3-->
+        <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden=" ">
+        <div class="carousel-item absolute opacity-0 bg-purple-50 " style="height:50vh; ">
+            <div style="background-image:url('{{asset('img/carroussel/egs1.jpg')}}');" class="block h-full w-full bg-no-repeat bg-center bg-contain text-white text-5xl text-center "></div>
+        </div>
+        <label for="carousel-2" class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto ">‹</label>
+        <label for="carousel-1" class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto ">›</label>
+
+        <!-- Add additional indicators for each slide-->
+        <ol class="carousel-indicators ">
+            <li class="inline-block mr-3">
+                <label for="carousel-1" class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700 ">•</label>
+            </li>
+            <li class="inline-block mr-3">
+                <label for="carousel-2" class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700 ">•</label>
+            </li>
+            <li class="inline-block mr-3">
+                <label for="carousel-3" class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700 ">•</label>
+            </li>
+        </ol>
+
+    </div>
+</div>
+<h2 class="text-4xl pl-6 my-4 ">Nouveautées</h2>
+<hr class="mb-10 ">
+<section class="flex justify-evenly flex-wrap pb-20 ">
+    {% for categorie in categories %}
+    <article class="w-96 h-auto pt-2 flex flex-col my-2 bg-purple-100 items-center border-2 rounded hover:border-dark2 ">
+        <h2 class="text-2xl text-center font-bold mb-6 ">{{categorie.nom}}</h2>
+        <div class="border-gray-200 rounded flex justify-center border w-2/3 bg-white ">
+            <img class="h-60 w-44 my-6 " src="{{asset( 'img/categorie/') ~ categorie.img1}} ">
+        </div>
+        <div class="py-6 flex space-x-9 ">
+            <button class="w-auto self-center bg-purple-500 hover:bg-purple-700 text-white mt-4 p-2 rounded ">
+                <a href=" ">acheter en boite</a>
+            </button>
+            <button class="w-auto self-center bg-purple-500 hover:bg-purple-700 text-white mt-4 p-2 rounded ">
+                <a href="{{path('categorie_content',{'id': categorie.id})}} ">voir les cartes à l'unité</a>
+            </button>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+<h2 class="text-4xl pl-6 my-4 ">Prochainement</h2>
+<hr class="mb-10 ">
+<section class="flex justify-evenly flex-wrap pb-20 ">
+    {% for categorie in categories %}
+    <article class="w-96 h-auto pt-2 flex flex-col my-2 bg-purple-100 items-center border-2 rounded hover:border-dark2 ">
+        <h2 class="text-2xl text-center font-bold mb-6 ">{{categorie.nom}}</h2>
+        <div class="border-gray-200 rounded flex justify-center border w-2/3 bg-white ">
+            <img class="h-60 w-44 my-6 " src="{{asset('img/categorie/') ~ categorie.img1}} ">
+        </div>
+        <div class="py-6 flex space-x-9 ">
+            <button class="w-auto self-center bg-purple-500 hover:bg-purple-700 text-white mt-4 p-2 rounded ">
+                <a href=" ">acheter en boite</a>
+            </button>
+            <button class="w-auto self-center bg-purple-500 hover:bg-purple-700 text-white mt-4 p-2 rounded ">
+                <a href="{{path('categorie_content',{'id': categorie.id})}}">voir les cartes à l'unité</a>
+            </button>
+        </div>
+    </article>
+    {% endfor %}
+</section> {% endblock %}

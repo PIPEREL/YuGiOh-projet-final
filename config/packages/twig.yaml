@@ -1,0 +1,19 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    globals: 
+        app_name: 'Yu-Gi-oh buid&buy'
+        copyright: 'Copyright © 2021 - PIPEREL Bastien'
+        contact_address: '12 rue Alfred de Vigny'
+        contact_zip: 91330
+        contact_city: 'YERRES'
+        contact_phone: '06.49.21.95.77'
+        contact_email: 'bastienpiperel@gmail.com'
+        contact_name: 'PIPEREL'
+        contact_surname: 'Bastien'
+        img_folder: '%img_folder%'
+        categorie_folder: '%categorie_folder%'
+        article_folder: '%article_folder%'
+        form_themes : ['tailwind_2_layout.html.twig']
+when@test:
+    twig:
+        strict_variables: true

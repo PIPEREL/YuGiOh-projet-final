@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %} {% block title %}acceuil{% endblock %} {% block body %}
+<h1 class="flex text-4xl pl-6 my-2 items-center "> <img class="w-20 h-25" src="{{asset( 'img/categorie/') ~ categorie.img1}} "> {{categorie.nom}} </h1>
+<hr class="mb-7 ">
+<div class="example-wrapper bg-gray-100">
+    <section class="my-4 flex flex-wrap justify-center gap-4">
+        {% for article in articles %}
+        <article class="text-center flex flex-col items-center py-3 px-2 bg-purple-100 hover:bg-purple-200 border-2 hover:border-gray-500 shadow-xl">
+            <img class="w-40" <img src="{{asset('img/article/') ~ article.img}}">
+            <div class="flex flex-col flex-grow my-2" href="#">
+                <a class="flex flex-col flex-grow justify-center" href="{{path('article_content', {'id' : article.id})}}">
+                    <p class="w-44 font-medium hover:underline "> {{article.nom}} </p>
+                </a>
+
+                <form action="{{path('panier_add')}}" method="post">
+                    <div class="flex flex-col justify-end mt-2">
+                        <p class="">{{article.libelle}}</p>
+                        <hr class="m-0">
+                        <div class="mt-3 flex justify-center gap-3">
+                            <p class=" text-red-500 font-medium">{{article.prix}}$</p>
+                            <input type="hidden" name="id" value="{{article.id}}">
+                            <select name="quantity">
+                                {% for i in 1.. article.stock %}
+                                <option value="{{i}}">{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        {# <a href="{{path('ajoutarticle', {'id' : article.id})}}"> #}
+                            <button class="w-5/12 self-center bg-purple-500 hover:bg-purple-700 text-white  mt-4 py-1 rounded">
+                                ajouter
+                            </button>
+                        {#</a>#}
+                    </div>
+                </form>
+            </div>
+
+        </article>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}

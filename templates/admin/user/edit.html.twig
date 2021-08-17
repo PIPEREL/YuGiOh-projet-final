@@ -1,0 +1,5 @@
+{% extends 'base.html.twig' %} {% block title %}Edit User{% endblock %} {% block body %}
+<h1 class="text-4xl pl-6 my-4 ">Editer un utilisateur</h1>
+<hr class="mb-10 "> {{ include('admin/user/_form.html.twig', {'button_label': 'Update'}) }}
+
+<a href="{{ path('user_index') }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour a la liste</a> {% endblock %}

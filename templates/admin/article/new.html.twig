@@ -1,0 +1,5 @@
+{% extends 'base.html.twig' %} {% block title %}New Article{% endblock %} {% block body %}
+<h1 class="text-4xl pl-6 my-4 ">Nouvel article</h1>
+<hr class="mb-10 "> {{ include('admin/article/_form.html.twig') }}
+
+<a href="{{ path('categorie_index') }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour a la liste</a> {% endblock %}

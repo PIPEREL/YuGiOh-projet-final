@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %} {% block title %}S'inscrire{% endblock %} {% block body %}
+<h1 class="pt-4 ml-4 text-4xl font-bold">Inscription</h1>
+<hr class="my-5">
+<div class="flex justify-center">
+    {{ form_start(registrationForm,{'attr':{'class': 'flex flex-col w-1/2 content-center gap-4 pb-20'}}) }} {{ form_widget(registrationForm.nom,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600
+    focus:border-transparent'}})}} {{ form_widget(registrationForm.prenom,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}})}} {{ form_widget(registrationForm.email,{'attr':{'class':
+    'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }} {{ form_widget(registrationForm.plainPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300
+    mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }}
+    <div class="flex justify-center items-center gap-3 ">
+        {{ form_widget(registrationForm.agreeTerms)}}
+        <label for="cgu">J'accepte les <a class="underline text-blue-500" href="">CGU</a></label>
+    </div>
+
+    <input class=" w-5/12 self-center bg-purple-500 hover:bg-purple-700 text-white  mt-4 py-1 rounded" type="submit" value="s'inscrire"> {{ form_end(registrationForm) }} {% endblock %}

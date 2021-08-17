@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %} {% block title %}Hello PaiementController!{% endblock %} {% block body %}
+<div class="h-96">
+    <div class="flex flex-col my-5"></div>
+    <h1 class="text-3xl text-center font-bold lg:my-11">Votre commande a été effectuée ! </h1>
+    <div class="flex flex-col lg:flex-row justify-center lg:gap-1">
+        <h2 class="text-2xl text-center font-medium my-3">Vous allez être redirigé vers la page d'acceuil.</h2>
+        <h3 class="text-2xl text-center font-medium my-3">Si la redirection ne fonctionne pas : <a class="text-blue-500" href="{{path('home')}}">cliquez ici</a></h3>
+    </div>
+</div>
+
+<script>
+    setTimeout(function() {
+        window.location.href = "/synfony2/projetYugi/public/";
+    }, 5000);
+</script>
+{% endblock %}

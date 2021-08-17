@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %} {% block title %}Paiement de commande{% endblock %} {% block body %}
+<h1 class=" text-3xl font-bold text-center my-5">Finalisation d'achat</h1>
+<div class="flex flex-col lg:flex-row justify-center gap-5">
+    <div class=" flex flex-col items-center">
+        <div class="flex flex-col gap-3">
+            <div class="flex flex-col bg-gray-50 w-96 ">
+                <h3 class="font-bold text-xl self-center my-5">payer avec</h3>
+                <div class="flex gap-7 items-center h-20 px-7 border-t-2 border-gray-200 ">
+                    <input type="radio" name="paiement" value="carte">
+                    <label for="paiement">Carte</label>
+                </div>
+                <div class="flex gap-7 items-center h-20 px-7 border-t-2 border-gray-200 ">
+                    <input type="radio" name="paiement" value="carte">
+                    <label for="paiement">Paypal</label>
+                </div>
+            </div>
+            <div class="flex flex-col my-3 gap-1 bg-gray-50 w-96 text-center ">
+                <h3 class="font-bold text-xl my-5 py-2">Lieu de livraison</h3>
+                <select class="my-3  w-48 self-center text-last-center" name="maison" id="">
+                  {#}  {% for adresse in adresses %}
+                    <option value="{{adresse.id}}">{{adresse.titre}}</option>
+                    {% endfor %}#}
+                    <option value="maison">maison</option>
+                </select>
+                <p>Bastien PIPEREL</p>
+                <p>12 rue alfred de vigny, 91330 Yerres </p>
+                <p>Ile-de-France , France métropolitaine</p>
+                <p>06 49 21 95 77</p>
+            </div>
+            <div class="flex flex-col my-3 pb-3 gap-1 bg-gray-50 w-96 text-center ">
+                <h3 class="font-bold text-xl self-center my-3">Verifier les objets et la livraison</h3>
+                {% for element in panier['elements'] %}
+                <div class="flex gap-2 border-t-2 border-gray-200 py-5">
+                    <div class="w-30 flex-shrink-0 px-5">
+                        <img class="h-40" src="{{asset('img/article/') ~ element.article.img}}" alt="">
+                    </div>
+                    <div class="flex flex-col self-center  w-48 gap-1">
+                        <p class="font-semibold">{{element.article.nom}}</p>
+                        <p>quantité : {{element.quantity}} </p>
+                        <p>prix unitaire : {{element.article.prix}}$ </p>
+                        <p>total: {{element.article.prix * element.quantity}}$</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class=" flex flex-col items-center">
+        <div class="flex flex-col gap-1 bg-gray-50 w-96 lg:w-72 text-center ">
+            <div class="flex justify-between px-5 py-1">
+                <p>objets ({{qte}})</p>
+                <p>{{panier.total}} euro</p>
+            </div>
+            <div class="flex justify-between px-5 py-1">
+                <p>Livraison</p>
+                <p>{{panier.livraison.prix}} euro</p>
+            </div>
+            <hr>
+            <p>total de la commande</p>
+            <p>{{panier.total + panier.livraison.prix}} euro</p>
+            <a href="{{path('panier_valider')}}"><button class=" self-center w-2/3 bg-purple-500 font-semibold hover:bg-purple-600 py-3 text-sm text-white uppercase ">Payer</button></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

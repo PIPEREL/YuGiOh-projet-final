@@ -1,0 +1,4 @@
+{{ form_start(form) }} {{form_label(form.Livraison)}} {{form_widget(form.Livraison, {'attr': {'class': 'block p-1 my-1 text-gray-600 w-full text-sm'}})}}
+
+
+<button class="bg-purple-500 font-semibold hover:bg-purple-600 mt-2 py-3 text-sm text-white uppercase w-full">{{ button_label|default('modifier livraison') }}</button> {{ form_end(form) }}
