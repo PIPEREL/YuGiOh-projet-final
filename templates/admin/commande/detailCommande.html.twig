@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %} {% block title %}Mes Commandes{% endblock %} {% block body %}
+<h1 class="text-4xl pl-6 my-4 ">Commandes de {{commande.user.nom}} {{commande.user.prenom}}</h1>
+<hr class="mb-10 ">
+<h2 class="text-2xl pl-6 my-4">Detail de la commande du {{commande.dateCreation|date('d-m-Y à h:m:s')}}</h2>
+
+
+
+<div class="flex items-center justify-center ">
+    <table class="table bspacing w-full text-gray-400 border-separate px-10 text-sm ">
+        <thead class="bg-purple-100  text-purple-700  px-10">
+            <tr class=" rounded-sm ">
+                <th class="p-3 border-purple-800 border-l-2 border-t-2 border-b-2 rounded-l-xl ">Article</th>
+                <th class="p-3 border-purple-800 border-t-2 border-b-2 "></th>
+                <th class="p-3 border-purple-800 border-t-2 border-b-2 ">Prix</th>
+                <th class="p-3 border-purple-800 border-t-2 border-b-2 ">Quantité</th>
+                <th class="p-3 border-purple-800 border-r-2 border-t-2 border-b-2 rounded-r-xl ">Prix total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for articleCommande in commande.articleCommandes %}
+            <tr class="bg-purple-100 border-2 border-purple-700 rounded-sm ">
+                <td class="p-3 text-center border-purple-800 border-l-2 border-t-2 border-b-2 rounded-l-xl ">
+                    <div class="p-3 text-purple-700 text-center ">
+                        {{ articleCommande.article.nom }}
+                    </div>
+                </td>
+                <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 ">
+                    <img class="w-20 h-25 " src="{{asset( 'img/article/') ~ articleCommande.article.img}} ">
+                </td>
+                <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 ">
+                    {{ articleCommande.article.prix }} €
+                </td>
+                <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 ">
+                    <span class="text-purple-700 rounded-md px-2 "> {{articleCommande.quantity}}</span>
+                </td>
+                <td class="p-3 text-center border-purple-800 border-r-2 border-t-2 border-b-2 rounded-r-xl ">
+                    <span class="text-purple-700 rounded-md px-2 ">{{articleCommande.quantity *
+                        articleCommande.article.prix}}</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="flex justify-center bg-purple-100 border-purple-800 rounded border-2 p-5 mx-10 gap-6 mb-7 text-purple-700 font-medium text-xl ">
+    <div>total :</div>
+    <div>{{commande.prixTotal}}</div>
+</div>
+<a href="{{ path('admin') }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour</a> {% endblock %}

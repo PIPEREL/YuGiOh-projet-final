@@ -47,4 +47,17 @@ class CommandeRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    
+    public function findNouveau()
+    {
+        return $this->createQueryBuilder('nouveau')
+        ->orderBy("nouveau.Date_creation", 'Desc')
+        ->setMaxResults(5)
+        ->getQuery()
+        ->getResult()
+        ;
+    }
+
+
 }

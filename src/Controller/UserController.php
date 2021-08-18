@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Entity\Commande;
+use App\Form\UserEditType;
 use App\Repository\UserRepository;
 use App\Repository\CommandeRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -167,7 +168,7 @@ class UserController extends AbstractController
         ]);
 
     }
-    #[Route('user/info/edit', name: 'currentuser_edit', methods: ['GET'])]
+    #[Route('user/info/edit', name: 'currentuser_edit', methods: ['GET','POST'])]
     public function myinfoedit(UserRepository $userRepository, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         if ($this->getUser() == null ) {
@@ -175,7 +176,7 @@ class UserController extends AbstractController
         }    
         $user = $userRepository->find($this->getUser());
 
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserEditType::class, $user);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -195,8 +196,6 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('currentuser_info', [], Response::HTTP_SEE_OTHER);
         }
-
-
 
         return $this->renderForm('user/editmesinfo.html.twig', [
             'user' => $user,

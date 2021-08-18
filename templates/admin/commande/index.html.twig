@@ -1,15 +1,10 @@
-{% extends 'base.html.twig' %} {% block title %}Hello AdminController!{% endblock %} {% block body %}
-
-<h1 class="text-4xl pl-6 my-4 ">Bienvenue sur la page admin </h1>
-<hr class="mb-10 ">
-<h2 class="text-2xl pl-6 my-4"> Les 5 dernières commandes</h2>
-
+{% extends 'base.html.twig' %} {% block title %}Hello CommandeController!{% endblock %} {% block body %}
 <div class="flex items-center justify-center ">
     <table class="table bspacing w-full text-gray-400  border-separate px-10 text-sm pb-8 ">
         <thead class="bg-purple-100  text-purple-700  px-10">
             <tr class="rounded-sm">
                 <th class="p-3 border-purple-800 border-l-2 border-t-2 border-b-2 rounded-l-xl">Commande</th>
-                <th class="p-3 border-purple-800 border-t-2 border-b-2"> Utilisateur </th>
+                <th class="p-3 border-purple-800 border-t-2 border-b-2">Utilisateur</th>
                 <th class="p-3 border-purple-800 border-t-2 border-b-2">Date de commande</th>
                 <th class="p-3 border-purple-800 border-t-2 border-b-2">Prix total</th>
                 <th class="p-3 border-purple-800 border-t-2 border-b-2">Type livraison</th>
@@ -37,8 +32,8 @@
                     <span class="text-purple-700 rounded-md px-2">{{commande.typeLivraison}}</span>
                 </td>
                 <td class="p-3 text-center border-purple-800 border-r-2 border-t-2 border-b-2 rounded-r-xl ">
-                    <a href="{{path('commande_detail', {'id' : commande.id})}}" class="text-purple-500 hover:text-purple-200 mr-2 ">
-                        <span class="text-purple-500 hover:text-blue-500 text-base ">voir</span>
+                    <a href="{{path('commande_detail', {'id' : commande.id})}}" class="text-purple-500 hover:text-purple-200 mr-2">
+                        <span class="text-purple-500 hover:text-blue-500 text-base">voir</span>
                     </a>
                 </td>
             </tr>
@@ -47,12 +42,4 @@
     </table>
 
 </div>
-<div class="flex justify-end ">
-    <a href="{{ path('commande') }}" class="font-semibold text-indigo-600 align-middle text-sm mr-5 "> voir plus <i class="fa fa-arrow-right pb-10 " aria-hidden="true"></i>  </a>
-</div>
-<h2 class="text-2xl pl-6 my-4 ">quelles sont les informations à traiter?</h2>
-<div class=" w-full flex flex-wrap gap-5 justify-center my-10 ">
-    <a class="w-1/3 " href="{{path( 'categorie_index')}} "><button class="w-full h-20 bg-purple-500 hover:bg-purple-700 text-white py-1 rounded ">Catégories</button></a>
-    <a class='w-1/3' href="{{path( 'user_index')}} "><button class=" w-full h-20 bg-purple-500 hover:bg-purple-700 text-white py-1 rounded ">Utilisateurs</button></a>
-</div>
-{% endblock %}
+<a href="{{ path('admin') }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour</a> {% endblock %}
