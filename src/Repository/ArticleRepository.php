@@ -47,4 +47,15 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByWord($value)
+    {
+        return $this->createQueryBuilder('word')
+        ->andWhere('word.nom LIKE :value')
+        ->setParameter('value', '%'.$value.'%')
+        ->orderBy('word.id', 'DESC')
+        ->getQuery()
+        ->getResult()
+        ;
+    }
 }

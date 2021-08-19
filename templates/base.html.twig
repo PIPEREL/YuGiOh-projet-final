@@ -18,7 +18,8 @@
                 <h1 class="self-center block lg:text-5xl">Build & buy</h1>
                 <div class="bg-red-500 h-7 flex-shrink-0 rounded gap-1 px-1 hidden lg:flex">
                     {% if app.user %}
-                    <div>{{app.user.nom}} <i class="fas fa-user"></i> | <a href="{{ path('app_logout') }}">Logout</a></div>
+                    <div>{{app.user.nom}} <i class="fas fa-user"></i> | <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
                     {% else %}
                     <a href="{{path('app_register')}}">s'inscrire <i class="fas fa-user"></i></a> | <a href="{{path('app_login')}}"> connexion <i class="fas fa-sign-in-alt "></i></a> {% endif %}
                 </div>
@@ -26,15 +27,17 @@
                     <i class="fas fa-bars text-2xl pr-4 " onclick="burger_toggle()"></i>
                 </div>
             </div>
+
             <div id="nav_container" class="h-0 overflow-hidden lg:h-full">
-                <nav class="lg:h-12 bg-gray-800 flex p-5 lg:pl-0 lg:justify-center ">
-                    <ul class="flex flex-col lg:flex-row gap-3 lg:gap-0 lg:space-x-9 lg:items-center">
+                <nav class="lg:h-12 bg-gray-800 flex flex-col gap-2 lg:gap-0 lg:flex-row p-5 lg:pl-0 lg:justify-between ">
+                    <div></div>
+                    <ul class="flex flex-col lg:flex-row gap-3 lg:pl-28 lg:gap-0 lg:space-x-9 lg:items-center">
                         <li class=" hover:underline "><a href="{{path('home')}} ">Accueil</a></li>
                         <li class=" hover:underline "><a href=" ">News</a></li>
                         <li class=" hover:underline "><a href="{{path('categorie_client')}}">Booster</a></li>
                         <li class=" hover:underline "><a href="{{path('panier')}}">Mon panier</a></li>
                         {% if app.user %}
-                        <li class=" hover:underline "><a href="{{path('currentuser_index')}}">Mon compte</a></li>
+                        <li class="hover:underline"><a href="{{path('currentuser_index')}}">Mon compte</a></li>
                         {% else %}
                         <li class="lg:hidden hover:underline "><a href="{{path('app_login')}} ">Connexion</a></li>
                         </li>
@@ -42,7 +45,12 @@
                         </li>
                         {% endif %}
                     </ul>
+                    <form class=" lg:self-center" action="{{path('article_search')}}" method="post">
+                        <input class="text-gray-900 rounded px-1" type="text" id="rechercher" name="rechercher" placeholder="rechercher" minlength="1" maxlength="20" size="10">
+                        <button type="submit"><i class="fas fa-search"></i> </button>
+                    </form>
                 </nav>
+
             </div>
         </header>
         <main class="bg-purple-50 ">

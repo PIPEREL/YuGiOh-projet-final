@@ -27,7 +27,7 @@ class ContactType extends AbstractType
                     'expanded' => false,
                     'multiple' => false,
                 ])
-            ->add('message', TextareaType::class, ['attr'=> ['maxLength' => 100,'minLength'  => 50], 'help' =>'100 char max'])
+            ->add('message', TextareaType::class, ['attr'=> ['maxLength' => 1000,'minLength'  => 20], 'help' =>'1000 char max'])
             ->add('envoyer', SubmitType::class) // c'est optionel
         ;
     }

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %} {% block title %}Carroussel index{% endblock %} {% block body %}
+<h1 class="text-4xl pl-6 my-4 ">Gestion des Carroussels</h1>
+<hr class="mb-10 ">
+<div class="flex flex-col items-center justify-center ">
+    <table class="table bspacing w-full text-gray-400  border-separate px-10 text-sm pb-8 ">
+        <thead class="bg-purple-100  text-purple-700  px-10">
+            <tr class="rounded-sm">
+                <th class="p-3 border-purple-800 border-l-2 border-t-2 border-b-2 rounded-l-xl">Id</th>
+                <th class="p-3 border-purple-800 border-t-2 border-b-2">Nom</th>
+                <th class="p-3 border-purple-800 border-t-2 border-b-2">image 1</th>
+                <th class="p-3 border-purple-800 border-t-2 border-b-2">image 2</th>
+                <th class="p-3 border-purple-800 border-t-2 border-b-2">image 3</th>
+                <th class="p-3 border-purple-800 border-t-2 border-b-2">Actions</th>
+                <th class="p-3 border-purple-800 border-r-2 border-t-2 border-b-2 rounded-r-xl">delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for carroussel in carroussels %}
+            <tr class="bg-purple-100 border-2 border-purple-700 rounded-sm">
+                <td class="p-3 text-center border-purple-800 border-l-2 border-t-2 border-b-2 rounded-l-xl">
+                    <div class="p-3 text-purple-700 text-center">{{ carroussel.id }}</div>
+                </td>
+                <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 ">{{ carroussel.nom }}</td>
+                <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 "><img class="w-40 h-20 block mx-auto " src="{{asset( 'img/carroussel/') ~  carroussel.image1}} " alt=" "></td>
+                <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 "><img class="w-40 h-20 block mx-auto " src="{{asset( 'img/carroussel/') ~  carroussel.image2}} " alt=" "></td>
+                <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 "><img class="w-40 h-20 block mx-auto " src="{{asset( 'img/carroussel/') ~  carroussel.image3}} " alt=" "></td>
+                <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 ">
+                    <a href=" {{ path( 'carroussel_edit', { 'id': carroussel.id}) }} "><button
+                        class="w-full self-center bg-purple-500 hover:bg-purple-700 text-white py-1 my-2 rounded ">Edit
+                        <i class="fas fa-edit"></i></button></a>
+                </td>
+                <td class="p-3 text-center border-purple-800 border-r-2 border-t-2 border-b-2 rounded-r-xl ">
+                    {{ include('admin/carroussel/_delete_form.html.twig') }}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6 ">no records found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path( 'carroussel_new') }} "><button
+        class=" self-center bg-purple-500 hover:bg-purple-700 text-white my-3 p-1 rounded ">Nouveau
+        carroussel <i class="fas fa-plus "></i></button></a>
+</div>
+<a href="{{ path('admin') }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i
+    class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour a l'acceuil</a> {% endblock %}

@@ -1,53 +1,60 @@
 {% extends 'base.html.twig' %} {% block title %}Categorie index{% endblock %} {% block body %}
 <h1 class="text-4xl pl-6 my-4 ">Categories</h1>
 <hr class="mb-10 ">
-<div class="flex flex-col items-center text-center ">
-    <table class="w-full table border-separate border border-purple-800 ">
-        <thead>
-            <tr>
-                <th class="border border-purple-800 ">Id</th>
-                <th class="border border-purple-800 ">Nom</th>
-                <th class="border border-purple-800 ">Description</th>
-                <th class="border border-purple-800 ">Libelle</th>
-                <th class="border border-purple-800 ">Date_parution</th>
-                <th class="border border-purple-800 ">Img1</th>
-                <th class="border border-purple-800 ">Img2</th>
-                <th class="border border-purple-800 ">actions</th>
-                <th class="border border-purple-800 ">delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for categorie in categories %}
-            <tr>
-                <td class="border border-purple-800 ">{{ categorie.id }}</td>
-                <td class="border border-purple-800 ">{{ categorie.nom }}</td>
-                <td class="border border-purple-800 ">{{ categorie.description|u.truncate(80,'...') }}</td>
-                <td class="border border-purple-800 ">{{ categorie.libelle }}</td>
-                <td class="border border-purple-800 ">{{ categorie.dateParution ? categorie.dateParution|date('d-m-Y') : '' }}</td>
-                <td class="border border-purple-800  "><img class="w-20 h-20 block mx-auto " src="{{asset( 'img/categorie/') ~ categorie.img1}} " alt=" "> </td>
-                <td class="border border-purple-800 text-center ">{% if categorie.img2 != null %}<img class="w-20 h-20 block mx-auto  " src="{{asset( 'img/categorie/') ~ categorie.img2}} " alt=" "> {% endif %} </td>
-                <td class="border border-purple-800 grid grid-rows-2 grid-flow-col gap-3 py-2 ">
-                    <a href="{{ path( 'categorie_show', { 'id': categorie.id}) }} "><button
-                            class=" w-full self-center bg-purple-500 hover:bg-purple-700 text-white py-1 rounded ">Voir
-                            <i class="fa fa-eye " aria-hidden="true "></i> </button></a>
-                    <a href="{{ path( 'categorie_edit', { 'id': categorie.id}) }} "><button
-                            class="w-full self-center bg-purple-500 hover:bg-purple-700 text-white py-1 rounded ">edit <i class="fas fa-edit"></i></button></a>
-                </td>
-                <td class="border border-purple-800 ">
-                    {{ include('admin/categorie/_delete_form.html.twig') }}
-                </td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="8 ">no records found</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<table class="table bspacing w-full text-gray-400  border-separate px-10 text-sm pb-8 ">
+    <thead class="bg-purple-100  text-purple-700  px-10">
+        <tr class="rounded-sm">
+            <th class="p-3 border-purple-800 border-l-2 border-t-2 border-b-2 rounded-l-xl">Id</th>
+            <th class="p-3 border-purple-800 border-t-2 border-b-2">Nom</th>
+            <th class="p-3 border-purple-800 border-t-2 border-b-2">Description</th>
+            <th class="p-3 border-purple-800 border-t-2 border-b-2">Libelle</th>
+            <th class="p-3 border-purple-800 border-t-2 border-b-2">Date_parution</th>
+            <th class="p-3 border-purple-800 border-t-2 border-b-2">Img1</th>
+            <th class="p-3 border-purple-800 border-t-2 border-b-2">Img2</th>
+            <th class="p-3 border-purple-800 border-t-2 border-b-2">Actions</th>
+            <th class="p-3 border-purple-800 border-r-2 border-t-2 border-b-2 rounded-r-xl">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for categorie in categories %}
+        <tr class="bg-purple-100 border-2 border-purple-700 rounded-sm">
+            <td class="p-3 text-center border-purple-800 border-l-2 border-t-2 border-b-2 rounded-l-xl">
+                <div class="p-3 text-purple-700 text-center">{{ categorie.id }}</div>
+            </td>
+            <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 ">{{ categorie.nom }}
+            </td>
+            <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 ">{{ categorie.description|u.truncate(80,'...') }}</td>
+            <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 ">{{ categorie.libelle }}
+            </td>
+            <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 ">{{ categorie.dateParution ? categorie.dateParution|date('d-m-Y') : '' }}</td>
+            <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 "><img class="w-20 h-20 block mx-auto " src="{{asset( 'img/categorie/') ~ categorie.img1}} " alt=" "> </td>
+            <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 ">{% if categorie.img2 != null %}<img class="w-20 h-20 block mx-auto  " src="{{asset( 'img/categorie/') ~ categorie.img2}} " alt=" "> {% endif %} </td>
+            <td class="p-3 text-purple-700 text-center border-purple-800 border-t-2 border-b-2 ">
+                <a href="{{ path( 'categorie_show', { 'id': categorie.id}) }} "><button
+                        class=" w-full self-center bg-purple-500 hover:bg-purple-700 text-white py-1 my-2 rounded ">Voir
+                        <i class="fa fa-eye " aria-hidden="true "></i> </button></a>
+                <a href="{{ path( 'categorie_edit', { 'id': categorie.id}) }} "><button
+                        class="w-full self-center bg-purple-500 hover:bg-purple-700 text-white py-1 my-2 rounded ">Edit
+                        <i class="fas fa-edit"></i></button></a>
+            </td>
+            <td class="p-3 text-center border-purple-800 border-r-2 border-t-2 border-b-2 rounded-r-xl ">
+                {{ include('admin/categorie/_delete_form.html.twig') }}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="8 ">no records found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
+<div class="flex justify-center">
     <a href="{{ path( 'categorie_new') }} "><button
             class=" self-center bg-purple-500 hover:bg-purple-700 text-white my-3 p-1 rounded ">Nouvelle
             categorie <i class="fas fa-plus"></i></button></a>
-
 </div>
-<a href="{{ path('admin') }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour a l'acceuil</a> {% endblock %}
+
+
+<a href="{{ path('admin') }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i
+        class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour a l'acceuil</a> {% endblock %}

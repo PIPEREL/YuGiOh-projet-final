@@ -1,0 +1,155 @@
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div id="popup" hidden class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!--
+        Background overlay, show/hide based on modal state.
+  
+        Entering: "ease-out duration-300"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+        <div id="modal_background" class="fixed inset-0 bg-gray-500 bg-opacity-75 opacity-0 ease-in duration-300  transition-opacity" aria-hidden="true"></div>
+
+        <!-- This element is to trick the browser into centering the modal contents. -->
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+        <!--
+        Modal panel, show/hide based on modal state.
+  
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+        <div id="modal_panel" class="inline-block ease-in duration-300 opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95 align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                        <h3 class="text-2xl leading-6 text-center pb-5 font-medium text-gray-900" id="modal-title">
+                            CGU
+                        </h3>
+                        <hr>
+                        <div class="mt-2 text-sm max-h-half  overflow-auto text-gray-500">
+                            <p class="mb-2 mx-3">Les présentes conditions générales régissent l'utilisation de ce site www.yugioh-build-buy. </p>
+                            <p class="mb-2 mx-3">Ce site appartient et est géré par PIPEREL Bastien</p>
+                            <p class="mb-2 mx-3">En utilisant ce site, vous indiquez que vous avez lu et compris les conditions d'utilisation et que vous acceptez de les respecter en tout temps </p>
+                            <p class="mb-2 mx-3">type de site : e-commerce </p>
+                            <h2 class="underline text-2xl text-center my-5">Propriété intellectuelle</h2>
+                            <p class="mb-2 mx-3">Tout contenu publié et mis à disposition sur ce site est la propriété de Piperel Bastien et de ses créateurs. cela comprends, mais n'est pas limité aux images, texte, logos, documents, fichiers téléchargeables et tout ce qui
+                                contribue à la composition de ce site
+                            </p>
+                            <h2 class="underline text-2xl text-center my-5">Restriction d'age</h2>
+                            <p class="mb-2 mx-3"> L'age minimum pour utiliser ce site est de 16 ans . Les utilisateurs conviennent qu'en utilisant notre site, ils ont plus de 16ans. Nous n'assumons aucunes responsabilité juridique pour les fausses déclaration d'âge.
+                            </p>
+                            <h2 class="underline text-2xl text-center my-5">Comptes</h2>
+                            <p class="mb-2 mx-3">Lorsque vous créez un compe sur notre site, vous acceptez ce qui suit :
+                            </p>
+                            <p class="mb-2 mx-3">
+                                1 - que vous êtes le seul responsable de votre compte et de la sécurité/confidentialité de votre compte, y compris les mot de passe ou renseignement de nature délicate joint a ce cmpte et
+                            </p>
+                            <p class="mb-2 mx-3">
+                                2- que tous les renseignements personnels que vous nous fournissez par l'entremise de votre compte sont à jour, exacts et véridiques et que vous mettrez à jour vos renseignements personnels s'ils changent
+                            </p>
+                            <p class="mb-2 mx-3">
+                                Nous nous réservons le droit de suspendre ou de resilier votre compte si vous utilisez notre site illégalement ou si vous violez les conditions d'utilisation acceptables
+                            </p>
+
+                            <h2 class="underline text-2xl text-center my-5">Ventes des biens et services</h2>
+                            <p class="mb-2 mx-3">
+                                Ce document régit la vente des biens mis a disposition sur notre site :
+                            </p>
+                            <p class="mb-2 mx-3">
+                                Les biens que nous offrons comprennent :
+                            </p>
+                            <p class="mb-2 mx-3">
+                                - Cartes yu-gi-oh!
+                            </p>
+                            <p class="mb-2 mx-3">
+                                Les biens liés à ce document sont des biens qui sont affichés sur notre site au moment où vous y accédez. Cela comprend tous les produits énumérés comme étant en rupture de stock.
+                            </p>
+                            <p class="mb-2 mx-3">
+                                Toutes les informations, descriptions ou images que nous fournissons sur nos biens sont décrites et présentées avec la plus grande precision possible. Cependant, nous ne sommes pas légalement tenu par ces informations.
+                            </p>
+                            <p class="mb-2 mx-3">
+                                Vou acceptez d'acheter ces biens à vos propres risques.
+                            </p>
+
+                            <h2 class="underline text-2xl text-center my-5">Paiements</h2>
+                            <p class="mb-2 mx-3">
+                                Nous acceptons les modes de paiement suivants sur ce site :
+                            </p>
+                            <p class="mb-2 mx-3">
+                                - Carte bancaire
+                            </p>
+                            <p class="mb-2 mx-3">
+                                - Paypal
+                            </p>
+                            <p class="mb-2 mx-3">
+                                Lorsque vous nous fournissez vos renseignement de paiement, vous nous confirmez que vous avez autorisé l'utilisation et l'accès à l'instrument de paiement que vous avez choisi d'utiliser.
+
+                            </p>
+                            <p class="mb-2 mx-3">
+                                En nous fournissant vos details de paiement vous confirmez que vous nous autorisez à facturer le montant du à cet instrument de paiement.
+                            </p>
+                            <p class="mb-2 mx-3">
+                                Si nous estimons que votre paiement a violé une loi ou l'une de nos conditions d'utilisation, nous nous réservons le droit d'annuler votre transaction.
+                            </p>
+
+                            <h2 class="underline text-2xl text-center my-5">transport et livraison</h2>
+                            <p class="mb-2 mx-3">
+                                Vous vous engagez à fournir une adresse email et d'expedition valide pour la commande. Nous nous reservons le droit de modifier, rejeter ou annuler votre commande. Dans le cas d'un paiement déjà effectué, nous vous rembourserons la somme équivalent au
+                                débit effectué. vous convenez qu'il vous incombe de surveiller votre mode de paiement.
+                            </p>
+                            <h2 class="underline text-2xl text-center my-5">limitation de responsabilité</h2>
+                            <p class="mb-2 mx-3">
+                                Piperel Bastien ou l'un de ses employés sera tenu responsable de tout problème découlant de ce site. Néammoins , Piperel Bastien et ses employés ne seront pas tenu responsable de tout problèmes découlant d'une utilisation irrégulière de ce site.
+                            </p>
+                            <h2 class="underline text-2xl text-center my-5">Indemnité</h2>
+                            <p class="mb-2 mx-3">
+                                En tant qu'utilisateur vous indemnisez par les présente, Piperel bastien de toute responsabilité, de tout cout, de toute cause d'action, de tout dommage ou de toute depense découlant de votre utilisation de ce site ou de votre violation d'une des dispositions
+                                énoncées dans le présent document
+                            </p>
+                            <h2 class="underline text-2xl text-center my-5">Loi applicables</h2>
+                            <p class="mb-2 mx-3">
+                                Ce document est soumis aux lois applicables en France et vise à se conformer à ses règles et règlement nécessaires. Cela inclut la réglementation à l'échelle de l'UE énoncée dans le RGPD.
+                            </p>
+
+                            <h2 class="underline text-2xl text-center my-5">Divisibilité</h2>
+                            <p class="mb-2 mx-3">
+                                Si a tout moment, l'une des dispositions énoncées dans le present document est jugée incompatible en vertu des loi applicables, ces dispositions seront considérées comme nulles et seront reitrées du document.
+                            </p>
+
+                            <h2 class="underline text-2xl text-center my-5">Modifications</h2>
+                            <p class="mb-2 mx-3">
+                                Ces conditions générales peuvent etre modifiées à tout moment afin de maintenir le respect de la loi et de refléter tout changement à la facon dont nous gérons notre site et la façon dont nous nous attendons à ce que les utilisateurs se comportent sur
+                                notre site.
+                            </p>
+
+                            <h2 class="underline text-2xl text-center my-5">Contact</h2>
+                            <p class="mb-2 mx-3">
+                                Veuillez communiquer avec nous si vous avez des questions à l'adresse suivante :
+                            </p>
+                            <p class="mb-2 mx-3">
+                                bastienpiperel@gmail.com
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button id="modal_ok_button" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700  focus:outline-none hover:bg-gray-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+            Fermer
+          </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{asset('js/popup.js')}}">
+</script>

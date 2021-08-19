@@ -22,6 +22,17 @@ class UserEditType extends AbstractType
         ->add('nom', TextType::class, ['label' => "nom", 'attr'=>["placeholder"=> "nom"]])
         ->add('prenom', TextType::class, ['label' => "prenom", 'attr'=>["placeholder"=> "prenom"]])
         ->add('email', EmailType::class, ['label' => "email", 'attr'=>["placeholder"=> "email"]])
+        ->add('oldPassword', PasswordType::class, [
+            // instead of being set onto the object directly,
+            // this is read and encoded in the controller
+            'mapped' => false,
+            'attr' => ['autocomplete' => 'new-password', 'placeholder'=>"Ancien mot de passe"],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'un mot de passe svp',
+                ])
+                ]])
+
         ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -46,8 +57,21 @@ class UserEditType extends AbstractType
                     ])
                 ],
             ])
+            ->add('confirmPassword', PasswordType::class, [
+                // instead of being set onto the object directly,
+                // this is read and encoded in the controller
+                'mapped' => false,
+                'attr' => ['autocomplete' => 'new-password', 'placeholder'=>" Confirmez le mot de passe"],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'un mot de passe svp',
+                    ])
+                    ]
+            ])
         ;
     }
+
+    
 
     public function configureOptions(OptionsResolver $resolver)
     {

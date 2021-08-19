@@ -181,8 +181,13 @@ class UserController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $form->get('plainPassword')->getData();
-
-            if ($password !== null) {
+             $oldpassword = $form->get('oldPassword')->getData();
+             $test = $passwordEncoder->isPasswordValid($user, $oldpassword);
+             if ($password !== null) {
+               if($test == false){
+                   $this->addFlash('wrongOldPassword', "L'ancien mot de passe ne correspond pas");
+                     return $this->redirectToRoute('currentuser_edit');
+                 }
                 $user->setPassword(
                     $passwordEncoder->encodePassword(
                         $user,

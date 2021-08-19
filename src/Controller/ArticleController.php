@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\CarrousselRepository;
+use App\Repository\CategorieRepository;
 use App\Service\ApiCardService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -121,5 +123,21 @@ class ArticleController extends AbstractController
             'article' => $article,
             'detail' => $detail
         ]);
+    }
+
+    #[Route('article/search', name: 'article_search', methods: ['POST'])]
+    public function searchArticle(Request $request,ArticleRepository $articleRepository,CategorieRepository $categoriesRepository): Response
+    {
+        if ($request->request->get('rechercher') !== null) {
+            $recherche = $request->request->get('rechercher');
+            $categories= $categoriesRepository->findByWord($recherche);
+            $articles = $articleRepository->findByWord($recherche);
+            return $this->render('magasin/recherche.html.twig', [
+            "categories" => $categories,
+            "articles" => $articles 
+            ]);
+        }
+       
+        return $this->redirectToRoute('home');
     }
 }

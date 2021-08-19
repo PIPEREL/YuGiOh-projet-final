@@ -44,6 +44,20 @@ class CartService
         $this->sessionInterface->set('cart', $cart);
     }
 
+    public function setQuantity(Article $article, int $quantity)
+    {
+        $cart = $this->get();
+
+        $articleId = $article->getid();
+        if (!isset($cart['elements'][$articleId])) {
+            $cart['elements'][$articleId] = ['article' => $article, 'quantity' => 0];
+        }
+            $cart['elements'][$articleId]['quantity'] = $quantity;
+            $this->sessionInterface->set('cart', $cart);
+            $cart['total'] = $this->getTotal();
+            $this->sessionInterface->set('cart', $cart);
+    }
+
     public function minus(Article $article)
     {
         $cart = $this->get();
@@ -96,8 +110,6 @@ class CartService
         foreach ($panier['elements'] as $element) {
             $total += $element['article']->getPrix() * $element['quantity'];
         }
-        
-
         return $total;
     }
 
@@ -124,5 +136,8 @@ class CartService
         }
         $this->sessionInterface->set('cart', $cart);
     }
+
+
+   
 
 }

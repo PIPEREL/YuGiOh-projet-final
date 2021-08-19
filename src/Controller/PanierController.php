@@ -55,8 +55,8 @@ class PanierController extends AbstractController
         if ($this->getUser() == null) {
             return $this->redirectToRoute('app_login');
         }
-        
         $panier = $cartService->get();
+
         $qte = $cartService->getQteTotal();  
         return $this->render('panier/confirmation.html.twig', [
           'panier' => $panier,
@@ -65,14 +65,29 @@ class PanierController extends AbstractController
     }
     
     #[Route('/panier/valider', name: 'panier_valider')]
-    public function validate(PaiementService $paymentService):Response
+    public function validate(PaiementService $paymentService, CartService $cartService, ArticleRepository $articleRepository):Response
     {
         if ($this->getUser() == null) {
             return $this->redirectToRoute('app_login');
         }
-
-        $stripeSessionId = $paymentService->create();
+        $panier = $cartService->get();
+        $change = false; 
+        foreach($panier['elements'] as $element){
+            $article = $articleRepository->find($element['article']);
+            $articleStock = $article->getStock();
+            if($articleStock < $element['quantity']){
+                $cartService->setQuantity($article, $articleStock);
+                $change = true;
+            }
+        }
+        if ($change == true){
+            $this->addFlash('echecpaiement', 'Stock insuffisant pour certains articles, votre panier a été mis à jour.');
+            return $this->redirectToRoute('panier');
+        }
+            $stripeSessionId = $paymentService->create();
         return $this->render('panier/redirect.html.twig', ['stripeSessionId' => $stripeSessionId]);
+        
+
     }
 
 

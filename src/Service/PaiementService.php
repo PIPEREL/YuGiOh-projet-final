@@ -76,4 +76,11 @@ Class PaiementService
         return $session->id !== null;
     }
 
+
+    public function retrieve(string $stripeSessionId)
+    {
+        $session = $this->stripe->checkout->sessions->retrieve($stripeSessionId);
+        return $session;
+    }
+
 }

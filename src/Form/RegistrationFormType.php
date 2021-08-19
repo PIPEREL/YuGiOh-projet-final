@@ -56,6 +56,17 @@ class RegistrationFormType extends AbstractType
                 ])
             ],
         ])
+        ->add('confirmPassword', PasswordType::class, [
+            // instead of being set onto the object directly,
+            // this is read and encoded in the controller
+            'mapped' => false,
+            'attr' => ['autocomplete' => 'new-password', 'placeholder'=>" Confirmez le mot de passe"],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'un mot de passe svp',
+                ])
+                ]
+        ])
     ;
 }
 

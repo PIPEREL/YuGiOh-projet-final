@@ -35,6 +35,7 @@ class ContactController extends AbstractController
                 ); // définit le corps du message text/html défini le format du mail a envoyer
 
                 $mailer->send($mail);
+                $this->addFlash('mailSuccess', 'Votre mail à été envoyé avec succès!');
                 return $this->redirectToRoute('contact');
             }
 

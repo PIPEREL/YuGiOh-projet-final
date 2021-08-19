@@ -5,10 +5,18 @@
     {{ form_start(registrationForm,{'attr':{'class': 'flex flex-col w-1/2 content-center gap-4 pb-20'}}) }} {{ form_widget(registrationForm.nom,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600
     focus:border-transparent'}})}} {{ form_widget(registrationForm.prenom,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}})}} {{ form_widget(registrationForm.email,{'attr':{'class':
     'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }} {{ form_widget(registrationForm.plainPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300
-    mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }}
+    mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }} {{ form_widget(registrationForm.confirmPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600
+    focus:border-transparent'}}) }}
+    <div id="alerte_mdp" class="self-center text-xs text-red-500 font-bold"></div>
     <div class="flex justify-center items-center gap-3 ">
         {{ form_widget(registrationForm.agreeTerms)}}
-        <label for="cgu">J'accepte les <a class="underline text-blue-500" href="">CGU</a></label>
+        <label for="cgu">J'accepte les <span id="button_show_CGU" class="underline text-blue-500" >CGU</span></label>
     </div>
 
-    <input class=" w-5/12 self-center bg-purple-500 hover:bg-purple-700 text-white  mt-4 py-1 rounded" type="submit" value="s'inscrire"> {{ form_end(registrationForm) }} {% endblock %}
+    <input id="submit" class=" w-5/12 self-center bg-gray-500 hover:bg-gray-700 text-white  mt-4 py-1 rounded" type="submit" value="s'inscrire" disabled> {{ form_end(registrationForm) }} {{ include('registration/alert.html.twig') }}
+
+
+
+    <script src="{{asset('js/mdp.js')}}">
+    </script>
+    {% endblock %}
