@@ -50,8 +50,8 @@
             <img class="h-60 w-44 my-6 " src="{{asset( 'img/categorie/') ~ categorie.img1}} ">
         </div>
         <div class="py-6 flex space-x-9 ">
-            <button class="w-auto self-center bg-gray-500 hover:bg-gray-700 text-white mt-4 p-2 rounded " disabled>
-                <a href=" ">acheter en boite</a>
+            <button class="w-auto self-center bg-gray-500 cursor-default text-white mt-4 p-2 rounded " disabled>
+                <a class="cursor-default" href=" ">acheter en boite</a>
             </button>
             <button class="w-auto self-center bg-purple-500 hover:bg-purple-700 text-white mt-4 p-2 rounded ">
                 <a href="{{path('categorie_content',{'id': categorie.id})}} ">voir les cartes à l'unité</a>
@@ -63,20 +63,22 @@
 <h2 class="text-4xl pl-6 my-4 ">Prochainement</h2>
 <hr class="mb-10 ">
 <section class="flex justify-evenly flex-wrap pb-20 ">
-    {% for categorie in categories %}
+    {% if prochains | length >0 %} {% for categorie in prochains %}
     <article class="w-96 h-auto pt-2 flex flex-col my-2 bg-purple-100 items-center border-2 rounded hover:border-dark2 ">
         <h2 class="text-2xl text-center font-bold mb-6 ">{{categorie.nom}}</h2>
         <div class="border-gray-200 rounded flex justify-center border w-2/3 bg-white ">
             <img class="h-60 w-44 my-6 " src="{{asset('img/categorie/') ~ categorie.img1}} ">
         </div>
         <div class="py-6 flex space-x-9 ">
-            <button class="w-auto self-center bg-gray-500 hover:bg-gray-700 text-white mt-4 p-2 rounded " disabled>
-                <a href="">acheter en boite</a>
+            <button class="w-auto self-center cursor-default bg-gray-500  text-white mt-4 p-2 rounded " disabled>
+                <a class="cursor-default" href="">acheter en boite</a>
             </button>
             <button class="w-auto self-center bg-purple-500 hover:bg-purple-700 text-white mt-4 p-2 rounded ">
                 <a href="{{path('categorie_content',{'id': categorie.id})}}">voir les cartes à l'unité</a>
             </button>
         </div>
     </article>
-    {% endfor %}
+    {% endfor %}{% else %}
+    <div class="text-2xl"> Aucunes informations sur les produits à venir pour le moment! </div>
+    {% endif %}
 </section> {% endblock %}

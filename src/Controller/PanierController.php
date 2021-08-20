@@ -136,4 +136,27 @@ class PanierController extends AbstractController
         $CartService->clear();
         return $this->redirectToRoute('home');
     }
+
+    
+    #[Route('/panier/setquantity/{id}', name: 'panier_setQte')]
+    public function setquantity(Request $request,Article $article, CartService $CartService):Response
+    {
+        if ($this->getUser() == null) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($request->request->get('quantity') !== null && $request->request->get('quantity') != 0 ) {
+            $quantity = $request->request->get('quantity');
+            if($quantity<= $article->getStock()){
+            $CartService->setquantity($article, $quantity);
+            }else{
+                $CartService->setquantity($article,$article->getStock());
+            }
+        }else{
+            $CartService->removeArticle($article);
+        }
+
+        return $this->redirectToRoute('panier');
+    }
+
 }

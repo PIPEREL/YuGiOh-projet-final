@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %} {% block title %}Editer informations{% endblock %} {% block body %} {% for message in app.flashes('wrongOldPassword') %}
 <div class="flex w-full bg-red-700 text-white text-2xl items-center justify-center h-16">{{message}}</div>
 {% endfor %}
-<h1 class="pt-4 ml-4 text-4xl font-bold">Editer mes informations</h1>
+<h2 class="pt-4 ml-4 text-4xl font-bold">Editer mes informations</h2>
 <hr class="my-5"> {{ include('user/_form.html.twig', {'button_label': 'editer'}) }}
 <a href="{{ path('currentuser_info') }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour </a>
 <script src="{{asset('js/mdp.js')}}">

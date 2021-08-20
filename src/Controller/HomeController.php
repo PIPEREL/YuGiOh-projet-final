@@ -15,8 +15,10 @@ class HomeController extends AbstractController
     {   
         $carroussel = $carrousselRepository->findOneby(array('nom'=>'home'));
         $categories = $categorieRepository->findNouveau();
+        $prochainement = $categorieRepository->findSoon();
         return $this->render('home/index.html.twig', ["categories"=> $categories,
-        'carroussel' => $carroussel
+        'carroussel' => $carroussel,
+        'prochains' => $prochainement,
         ]);
     }
 }

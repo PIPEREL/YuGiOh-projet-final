@@ -51,7 +51,7 @@ class CategorieRepository extends ServiceEntityRepository
     public function findSoon()
     {
         return $this->createQueryBuilder('soon')
-        ->andWhere('soon.date_parution> :today')
+        ->andWhere('soon.date_parution > :today')
         ->setParameter('today', date("Y-m-d"))
         ->orderBy("soon.date_parution", 'ASC')
         ->setMaxResults(2)
@@ -63,7 +63,7 @@ class CategorieRepository extends ServiceEntityRepository
     public function findNouveau()
     {
         return $this->createQueryBuilder('nouveau')
-        ->andWhere('nouveau.date_parution < :today')
+        ->andWhere('nouveau.date_parution <= :today')
         ->setParameter('today', date("Y-m-d"))
         ->orderBy("nouveau.date_parution", 'Desc')
         ->setMaxResults(2)

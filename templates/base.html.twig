@@ -14,11 +14,11 @@
     <div class="container mx-auto flex flex-col ">
         <header class="bg-red-800  text-white  flex flex-col">
             <div class="flex justify-between">
-                <img src="{{asset('img/logo3.png')}}" class="w-12 lg:w-36 ml-3" alt="logo">
-                <h1 class="self-center block lg:text-5xl">Build & buy</h1>
+                <a href="{{path('home')}}"><img src="{{asset('img/logo3.png')}}" class="w-12 lg:w-36 ml-3" alt="logo"></a>
+                <h2 class="self-center block lg:text-5xl">Build & buy</h2>
                 <div class="bg-red-500 h-7 flex-shrink-0 rounded gap-1 px-1 hidden lg:flex">
                     {% if app.user %}
-                    <div>{{app.user.nom}} <i class="fas fa-user"></i> | <a href="{{ path('app_logout') }}">Logout</a>
+                    <div><a href="{{path('currentuser_index')}}">{{app.user.nom}} <i class="fas fa-user"></i></a> | <a href="{{ path('app_logout') }}">Logout</a>
                     </div>
                     {% else %}
                     <a href="{{path('app_register')}}">s'inscrire <i class="fas fa-user"></i></a> | <a href="{{path('app_login')}}"> connexion <i class="fas fa-sign-in-alt "></i></a> {% endif %}

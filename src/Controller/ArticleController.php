@@ -130,8 +130,16 @@ class ArticleController extends AbstractController
     {
         if ($request->request->get('rechercher') !== null) {
             $recherche = $request->request->get('rechercher');
+            $anArticle = $articleRepository->findOneBy(array('nom'=>$recherche));
+            if($anArticle !== null){     
+            return $this->redirectToRoute('article_content', ['id' => $anArticle->getId()]);
+            }
             $categories= $categoriesRepository->findByWord($recherche);
             $articles = $articleRepository->findByWord($recherche);
+            if($categories == null && $articles == null){
+                $this->addFlash('failedresearch', 'Erreur : votre recherche ne renvoie vers aucun contenu');
+            }
+
             return $this->render('magasin/recherche.html.twig', [
             "categories" => $categories,
             "articles" => $articles 
