@@ -38,7 +38,7 @@ class UserEditType extends AbstractType
                 // this is read and encoded in the controller
                 'required' => false,
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password', "placeholder"=> "Mot de passe"],
+                'attr' => ['autocomplete' => 'new-password', "placeholder"=> "Nouveau Mot de passe"],
                 'constraints' => [
                     // new NotBlank([
                     //     'message' => 'un mot de passe svp',

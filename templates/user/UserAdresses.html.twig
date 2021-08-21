@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %} {% block title %}Mes Informations{% endblock %} {% block body %}
+<div class="">
+    <h2 class="text-4xl pl-6 my-4 ">Adresses de {{app.user.nom}} {{app.user.prenom}} </h2>
+    <hr class="mb-10 ">
+
+    <div class="flex justify-center flex-col mx-3 lg:mx-0 lg:flex-row mb-4 gap-3">
+        {% for adress in adresses %}
+        <div class="flex flex-col flex-wrap text-center border-2 pb-7 ">
+            <div class="flex flex-col p-3 ">
+                <h2 class="font-medium pb-2 mb-2 border-b-2 ">Nom</h2>
+                {{ adress.nom }}
+            </div>
+            <div class="flex flex-col p-3 ">
+                <h2 class="font-medium pb-2 mb-2 border-b-2 ">Adresse</h2>
+                <div class="flex-wrap">{{ adress.rue }} , {{ adress.codepostal}} {{ adress.ville }} </div>
+            </div>
+            <div class="flex flex-col  p-3 ">
+                <h2 class="font-medium pb-2 mb-2 border-b-2 ">Pays</h2>
+                <div class="flex-wrap">{{ adress.pays }}</div>
+            </div>
+            <div class="flex flex-col  p-3 ">
+
+                <a class="self-center" href="{{path('currentuser_adresse_edit', {'id': adress.id})}}"> <button class="self-center w-48 bg-purple-500 hover:bg-purple-700 text-white py-1 mt-5 rounded"><i
+                            class="fas fa-edit"></i> modifier</button></a>
+
+                {{ include('user/_delete_form.html.twig') }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="flex justify-center">
+        <a href="{{ path('currentuser_adresses_new') }}"><button
+                class=" self-center bg-purple-500 hover:bg-purple-700 text-white my-3 p-1 rounded ">Nouvelle
+                adresse <i class="fas fa-plus"></i></button></a>
+    </div>
+    <a href="{{ path('currentuser_index') }}" class=" font-semibold text-indigo-600 align-middle text-sm mt-5 ml-5 "><i
+                class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour</a>
+</div> {% endblock %}

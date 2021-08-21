@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Entity\Adresses;
 use App\Entity\Commande;
 use App\Form\UserEditType;
+use App\Form\AdressesUserType;
 use App\Repository\UserRepository;
 use App\Repository\CommandeRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,8 +57,10 @@ class UserController extends AbstractController
     #[Route('admin/user/{id}', name: 'user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
+        $adresses = $user->getAdresses();
         return $this->render('admin/user/show.html.twig', [
-            'user' => $user,
+            'user' => $user,         
+            'adresses'=> $adresses
         ]);
     }
 
@@ -209,6 +213,73 @@ class UserController extends AbstractController
 
     }
     
+    #[Route('user/info/adresses', name: 'currentuser_adresses')]
+    public function myadresses()
+    {
+        if ($this->getUser() == null ) {
+            return $this->redirectToRoute('app_login');
+        }
+       
+        $user = $this->getUser();
+        $adresses = $user->getAdresses();
+        // $details = $commande->getArticleCommandes();
 
+        return $this->renderForm('user/UserAdresses.html.twig', [
+            'user' => $user,
+            'adresses' => $adresses
+        ]);
+
+    }
+
+    #[Route('user/info/adresses/{id}/edit', name: 'currentuser_adresse_edit', methods: ['GET', 'POST'])]
+    public function editadresse(Request $request, Adresses $adress): Response
+    {
+        if ($this->getUser() == null) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if( $this->getUser() != $adress->getUser()){
+            return $this->redirectToRoute('home');
+        }
+
+        $form = $this->createForm(AdressesUserType::class, $adress);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('currentuser_adresses', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('user/UserEditAdresses.html.twig', [
+            'adress' => $adress,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('user/info/adresses/new', name: 'currentuser_adresses_new', methods: ['GET', 'POST'])]
+    public function new_user_adresse(Request $request): Response
+    {
+        if ($this->getUser() == null) {
+            return $this->redirectToRoute('app_login');
+        }
+        $adress = new Adresses();
+        $form = $this->createForm(AdressesUserType::class, $adress);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $adress->setUser($this->getUser());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($adress);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('currentuser_adresses', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('user/UserNewAdress.html.twig', [
+            'adress' => $adress,
+            'form' => $form,
+        ]);
+    }
 
 }

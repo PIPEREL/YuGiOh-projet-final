@@ -1,0 +1,5 @@
+{% extends 'base.html.twig' %} {% block title %}Editer une{% endblock %} {% block body %}
+<h2 class="pt-4 ml-4 text-4xl font-bold">Editer une adresse</h2>
+<hr class="my-5"> {{ include('admin/adresses/_form.html.twig', {'button_label': 'Update'}) }}
+
+<a href="{{ path('user_index') }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour </a> {% endblock %}

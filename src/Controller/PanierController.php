@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Service\CartService;
 use App\Service\PaiementService;
 use App\Repository\ArticleRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,6 +18,7 @@ class PanierController extends AbstractController
     #[Route('/panier', name: 'panier')]
     public function index(CartService $cartService, Request $request): Response
     {
+       
         if ($this->getUser() == null) {
             return $this->redirectToRoute('app_login');
         }
@@ -26,20 +28,19 @@ class PanierController extends AbstractController
             'Livraison',
             ChoiceType::class,
             [
-                'choices' => ['Livraison non suivie - 5.00 $' => 'untracked', 'Livraison Suivie - 10.00 $' => 'tracked'],
+                'choices' => ['Livraison non suivie - 5.00 €' => 'untracked', 'Livraison Suivie - 10.00 €' => 'tracked'],
                 'expanded' => false,
                 'multiple' => false,
             ]
         )
         ->getForm();
-        
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $cartService->livraison($form->getData());
         }
-
-
+        
         $panier = $cartService->get();
         $qte = $cartService->getQteTotal();  
         return $this->render('panier/index.html.twig', [
@@ -57,10 +58,15 @@ class PanierController extends AbstractController
         }
         $panier = $cartService->get();
 
+        
+        // $user = $userRepository->find($this->getUser());
+        $adresses = $this->getUser()->getAdresses();
+
         $qte = $cartService->getQteTotal();  
         return $this->render('panier/confirmation.html.twig', [
           'panier' => $panier,
           'qte' => $qte,
+          'adresses' => $adresses
         ]);
     }
     

@@ -1,0 +1,9 @@
+<h1>mail de reset mot de passe</h1>
+
+<p>Pour reset votre mot de passe, cliquez sur le lien suivant:</p>
+
+<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+
+<p>ce lien expirera dans: {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+
+<p>a bientot sur Yu-gi-oh build & buy!</p>

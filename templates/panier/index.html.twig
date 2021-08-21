@@ -55,7 +55,7 @@
         <h1 class="font-semibold text-2xl border-b pb-8 ">Total de la commande</h1>
         <div class="flex justify-between mt-10 mb-5 ">
             <span class="font-semibold text-sm uppercase ">{{qte}} articles</span>
-            <span class="font-semibold text-sm ">{{panier.total}} $</span>
+            <span class="font-semibold text-sm ">{{panier.total}} €</span>
         </div>
         <div>
             {{ include('panier/_form.html.twig') }}
@@ -69,7 +69,7 @@
         <div class="border-t mt-8 ">
             <div class="flex font-semibold justify-between py-6 text-sm uppercase ">
                 <span>Total</span>
-                <span>{{panier.total + panier.livraison.prix}} $</span>
+                <span>{{panier.total + panier.livraison.prix}} €</span>
                 <button></button>
             </div>
             <a href="{{path('panier_confirmation')}}"><button class="bg-purple-500 font-semibold hover:bg-purple-600 py-3 text-sm text-white uppercase w-full {% if qte == 0 %} opacity-50 {% endif %}" 
