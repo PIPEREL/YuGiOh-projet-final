@@ -35,15 +35,19 @@
                 </td>
                 <td class="p-3 text-center border-purple-800 border-r-2 border-t-2 border-b-2 rounded-r-xl ">
                     <span class="text-purple-700 rounded-md px-2 ">{{articleCommande.quantity *
-                        articleCommande.article.prix}}</span>
+                        articleCommande.article.prix}}€</span>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
-<div class="flex justify-center bg-purple-100 border-purple-800 rounded border-2 p-5 mx-10 gap-6 mb-7 text-purple-700 font-medium text-xl ">
+<div class="flex justify-center bg-purple-100 border-purple-800 rounded border-2 p-5 mx-10 gap-6 mb-2 text-purple-700 font-medium text-xl ">
     <div>total :</div>
-    <div>{{commande.prixTotal}}</div>
+    <div>{{commande.prixTotal}}€</div>
+</div>
+<div class="flex justify-center bg-purple-100 border-purple-800 rounded border-2 p-5 mx-10 gap-6 mb-7 text-purple-700 font-medium text-xl ">
+    <div>Lieu de livraison:</div>
+    <div>{{commande.adresse}}</div>
 </div>
 <a href="{{ path('admin') }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour</a> {% endblock %}

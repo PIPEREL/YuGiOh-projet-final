@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %} {% block title %}Article{% endblock %} {% block body %}
-<article class="flex flex-col md:flex-row gap-5 m-7 ">
-    <div class=" flex-shrink-0">
-        <img class="h-80 w-70 border-2 p-2 flex-shrink-0 " src="{{asset( 'img/article/') ~ article.img}} " alt=" ">
+
+<article class="flex flex-col items-center lg:items-start lg:flex-row gap-5 m-7 ">
+    <div class=" flex-shrink-0 p-2 w-72">
+        <div id="img-container">
+            <img class=" border-2 flex-shrink-0" src="{{asset( 'img/article/') ~ article.img}} " alt=" ">
+        </div>
     </div>
-    <div class="flex flex-col flex-wrap md:border-l-2 md:pl-4 gap-5 ">
+    <div class="flex flex-col flex-wrap lg:border-l-2 lg:pl-4 gap-5 ">
         <div>
             <h2 class="text-2xl pl-3 my-4 ">{{ article.nom }} </h2>
             <hr class="mb-2 ">
@@ -24,37 +27,37 @@
 
         <div class="flex flex-col border-2 p-3 ">
             <h2 class="font-medium pb-2 mb-2 border-b-2 ">details</h2>
-            <div class="flex flex-col md:flex-row flex-wrap">
-                <div class="md:w-1/2 flex flex-col border-2 p-2">
+            <div class="flex flex-col lg:flex-row flex-wrap">
+                <div class="lg:w-1/2 flex flex-col border-2 p-2">
                     <h3 class="font-medium">Type de carte </h3>
                     <div>{{ detail.type }}</div>
                 </div>
-                <div class="md:w-1/2 flex flex-col border-2 p-2">
+                <div class="lg:w-1/2 flex flex-col border-2 p-2">
                     <h3 class="font-medium">Type</h3>
                     <div>{{ detail.race }}</div>
                 </div>
-                <div class="md:w-1/2 flex flex-col border-2 p-2">
+                <div class="lg:w-1/2 flex flex-col border-2 p-2">
                     <h3 class="font-medium">Attribut</h3>
                     <div>{{ detail.attribute }}</div>
                 </div>
-                <div class="md:w-1/2 flex flex-col border-2 p-2">
+                <div class="lg:w-1/2 flex flex-col border-2 p-2">
                     <h3 class="font-medium">Archétype</h3>
                     <div>{{ detail.archetype }}</div>
                 </div>
-                <div class="md:w-1/2 flex flex-col border-2 p-2">
+                <div class="lg:w-1/2 flex flex-col border-2 p-2">
                     <h3 class="font-medium">Attaque/Défense</h3>
                     <div>{{ detail.atk }} / {{ detail.def}}</div>
                 </div>
-                <form class="md:w-1/2 flex flex-col border-2 p-2" action="{{path('panier_add')}}" method="post">
+                <form class="lg:w-1/2 flex flex-col border-2 p-2" action="{{path('panier_add')}}" method="post">
                     <h3 class="font-medium">stock</h3>
-                    <div class="flex flex-col md:items-center md:flex-row md:gap-2">
+                    <div class="flex flex-col lg:items-center lg:flex-row lg:gap-2">
                         <input type="hidden" name="id" value="{{article.id}}">
-                        <select class="md:w-2/5 h-6" name="quantity">
+                        <select class="lg:w-2/5 h-6" name="quantity">
                         {% for i in 1.. article.stock %}
                         <option value="{{i}}">{{i}}</option>
                         {% endfor %}
                     </select>
-                        <button class="md:w-2/5 md:self-center bg-purple-500 hover:bg-purple-700 text-white py-0.5 mt-2 md:mt-0 rounded">
+                        <button class="lg:w-2/5 lg:self-center bg-purple-500 hover:bg-purple-700 text-white py-0.5 mt-2 lg:mt-0 rounded">
                         ajouter au panier
                     </button>
                     </div>
@@ -62,7 +65,13 @@
 
             </div>
         </div>
+
     </div>
 </article>
+{% block javascripts %}
+<script src="{{asset('js/zoom.js')}}"></script>
+<script src="{{asset('js/article.js')}}"></script>
+
+{% endblock %}
 <a href="{{ path('categorie_content', {'id': article.categorie.id}) }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i class="fa fa-arrow-left ml-10 my-20 p-2"
         aria-hidden="true"></i> retour a la liste</a> {% endblock %}

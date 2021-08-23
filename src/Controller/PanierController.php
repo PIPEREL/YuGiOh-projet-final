@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Adresses;
 use App\Entity\Article;
+use App\Repository\AdressesRepository;
 use App\Service\CartService;
 use App\Service\PaiementService;
 use App\Repository\ArticleRepository;
@@ -165,4 +167,23 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('panier');
     }
 
+    #[Route('/panier/adresse', name: 'panier_adresse')]
+    public function setAdresse(Request $request, AdressesRepository $adressesRepository , CartService $CartService):Response
+    {
+        if ($this->getUser() == null) {
+            return $this->redirectToRoute('app_login');
+        }
+        if ($request->request->get('adresse') !== null){
+            $adresse = $adressesRepository->find($request->request->get('adresse'));
+            
+            if($adresse->getUser() != $this->getUser()){
+                return $this->redirectToRoute('home');
+            }
+
+            $CartService->setadresse($adresse);
+            
+        }
+        
+        return $this->redirectToRoute('panier_confirmation');
+    }
 }

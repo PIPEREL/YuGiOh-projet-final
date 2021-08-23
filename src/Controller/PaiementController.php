@@ -27,7 +27,7 @@ class PaiementController extends AbstractController
         if($test == false){
             return $this->redirectToRoute('paiement_failure');
         }
-        $response = $paiementService->retrieve($stripeSessionId);
+      //  $response = $paiementService->retrieve($stripeSessionId);
         $commande = $commandeService->New($stripeSessionId);
         $commandeService->add($commande);
         $cartService->clear();

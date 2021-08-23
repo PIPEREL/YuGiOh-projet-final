@@ -543,6 +543,7 @@ module.exports = {
         }),
         minHeight: {
             0: '0px',
+            quarter: '25%',
             full: '100%',
             screen: '100vh',
         },

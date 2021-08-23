@@ -11,8 +11,8 @@
 
 <body class="bg-gradient-to-b from-dark1 to-dark2 bg-no-repeat bg-fixed h-screen">
     <script src="https://js.stripe.com/v3/"></script>
-    <div class="container mx-auto flex flex-col ">
-        <header class="bg-red-800  text-white  flex flex-col">
+    <div class="lg:container mx-auto flex flex-col ">
+        <header class="bg-red-800 text-white flex flex-col lg:h-auto">
             <div class="flex justify-between">
                 <a href="{{path('home')}}"><img src="{{asset('img/logo3.png')}}" class="w-12 lg:w-36 ml-3" alt="logo"></a>
                 <h2 class="self-center block lg:text-5xl">Build & buy</h2>
@@ -53,7 +53,7 @@
 
             </div>
         </header>
-        <main class="bg-purple-50 ">
+        <main class="bg-purple-50 min-h-screen lg:min-h-0 ">
             {% block body %}{% endblock %}
         </main>
         <footer class="bg-gray-800 text-white pt-2 ">
@@ -94,8 +94,7 @@
         </footer>
     </div>
     <script src="{{asset('js/script.js')}}"></script>
-
+    {% block javascripts %} {#{{ encore_entry_script_tags('app') }}#} {% endblock %}
 </body>
-{% block javascripts %} {#{{ encore_entry_script_tags('app') }}#} {% endblock %}
 
 </html>

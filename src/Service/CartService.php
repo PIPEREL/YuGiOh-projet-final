@@ -16,7 +16,7 @@ class CartService
 
     public function get()
     {
-        $cart = $this->sessionInterface->get('cart', ['total' => 0, 'livraison' =>['type'=>'untracked','prix'=> 5] , 'elements' => []]);
+        $cart = $this->sessionInterface->get('cart', ['total' => 0, 'livraison' =>['type'=>'untracked','prix'=> 5] , 'adresse' => '', 'elements' => []]);
         return $cart;
     }
 
@@ -137,7 +137,13 @@ class CartService
         $this->sessionInterface->set('cart', $cart);
     }
 
+    public function setadresse($data)
+    {
+        $cart = $this->get();
+        $cart['adresse'] = $data;
+        $this->sessionInterface->set('cart', $cart);
 
+    }
    
 
 }

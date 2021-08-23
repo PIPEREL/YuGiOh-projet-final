@@ -27,12 +27,14 @@ class CommandeService
     public function New(string $stripeSessionId){
         $panier = $this->cartService->get();
         $time = new DateTime('NOW');
+        $adresse =  $panier['adresse']->getRue().', '.$panier['adresse']->getCodepostal().', '.$panier['adresse']->getVille().', '.$panier['adresse']->getPays();
         $commande = new Commande;
         $commande->setPrixTotal($panier['total']+$panier['livraison']['prix']);
         $commande->setTypeLivraison($panier['livraison']['type']);
         $commande->setUser($this->em->getRepository(User::class)->find($this->security->getUser()));
         $commande->setDateCreation($time);
         $commande->setReference($stripeSessionId);
+        $commande->setAdresse($adresse);
         return $commande;
 
     }
