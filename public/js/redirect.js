@@ -1,3 +1,3 @@
 setTimeout(function() {
-    window.location.href = "/symphony/projetyugi/public/";
+    window.location.href = "https://yu-gi-oh-buildandbuy.fr";
 }, 5000);

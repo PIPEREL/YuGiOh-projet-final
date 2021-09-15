@@ -20,7 +20,7 @@ class AdressesUserType extends AbstractType
             ->add('pays', TextType::class, ['attr'=> ['placeholder' => 'Pays']])
             ->add('ville', TextType::class, ['attr'=> ['placeholder' => 'Ville']])
             ->add('rue', TextType::class, ['attr'=> ['placeholder' => 'rue']])
-            ->add('codepostal', IntegerType::class, ['attr'=> ['placeholder' => 'Libelle']])
+            ->add('codepostal', IntegerType::class, ['attr'=> ['placeholder' => 'code postal']])
         ;
     }
 

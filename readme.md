@@ -281,3 +281,14 @@ ajouter à base.html :
 
 
 ## Créer le redirect ##
+
+
+
+## dompdf ###
+
+composer require dompdf/dompdf
+
+
+## webpack encore ##
+
+/!\ penser au yarn encore dev

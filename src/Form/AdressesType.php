@@ -20,8 +20,10 @@ class AdressesType extends AbstractType
             ->add('pays', TextType::class, ['attr'=> ['placeholder' => 'Pays']])
             ->add('ville', TextType::class, ['attr'=> ['placeholder' => 'Ville']])
             ->add('rue', TextType::class, ['attr'=> ['placeholder' => 'rue']])
-            ->add('codepostal', IntegerType::class, ['attr'=> ['placeholder' => 'Libelle']])
+            ->add('codepostal', IntegerType::class, ['attr'=> ['placeholder' => 'code postal']])
             ->add('user', EntityType::class,['label'=>"utilisateur", 'class'=>User::class, 'choice_label' => function (User $user) {
+                return $user->getNom() . ' ' . $user->getPrenom();}])
+            ->add('typeEvent', EntityType::class,['label'=>"typeEvent", 'class'=>User::class, 'choice_label' => function (User $user) {
                 return $user->getNom() . ' ' . $user->getPrenom();}])
         ;
     }

@@ -26,7 +26,7 @@
                     <a href="{{path('panier_effacer',{'id': element.article.id})}}" class="font-semibold hover:text-red-500 text-gray-500 text-xs ">Retirer</a>
                 </div>
             </div>
-            <div class="flex pl-10 lg:pl-0 gap-4 lg:gap-0 justify-center lg:w-1/5 ">
+            <div class="flex flex-col-reverse items-center sm:flex-row pl-10 lg:pl-0 gap-4 lg:gap-0 justify-center lg:w-1/5 ">
                 <a href="{{path( 'panier_minus',{ 'id': element.article.id})}} "><i class="fas fa-minus "></i></a>
                 <form action="{{path('panier_setQte', {'id': element.article.id } )}}" method="post">
                     <input id="quantite" class="mx-2 border text-center w-8" name="quantity" type="text " value="{{ element.quantity }}" onchange="this.form.submit()">

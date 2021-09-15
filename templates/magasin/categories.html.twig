@@ -1,17 +1,17 @@
-{% extends 'base.html.twig' %} {% block title %}sets{% endblock %} {% block body %}
-<h2 class="flex text-6xl lg:text-4xl pl-6 my-2 items-center "> Liste des sets </h2>
+{% extends 'base.html.twig' %} {% block title %}Sets{% endblock %} {% block body %}
+<h2 class="flex text-4xl pl-6 my-2 items-center "> Liste des sets </h2>
 <hr class="mb-7 ">
 <section class="p-4 flex flex-col lg:flex-row items-center flex-wrap justify-center gap-1">
     {% for categorie in categories %}
     <article class="py-3 m-2  bg-purple-100 hover:bg-purple-200 border-2 hover:border-gray-500 shadow-2xl">
         <a href="{{path('categorie_content',{'id': categorie.id})}}">
-            <img class=" w-72 h-72 lg:w-44 lg:h-44" src="{{asset( 'img/categorie/') ~ categorie.img1}} ">
+            <img class="w-44 h-44" src="{{asset( 'img/categorie/') ~ categorie.img1}} ">
             <div class="flex justify-center mt-2">
 
-                <p class="w-72 lg:w-32 text-center text-3xl lg:text-base">{{ categorie.nom }}</p>
+                <p class="w-32 text-center text-base">{{ categorie.nom }}</p>
             </div>
             <div class="flex justify-center mt-2">
-                <p class="w-72 lg:w-32  text-center text-3xl lg:text-base">{{ categorie.libelle }}</p>
+                <p class="w-32  text-center text-base">{{ categorie.libelle }}</p>
 
             </div>
         </a>
