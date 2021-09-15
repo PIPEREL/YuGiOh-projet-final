@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Categorie;
 use App\Form\CategorieType;
+use App\Repository\ArticleRepository;
 use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -159,9 +160,10 @@ class CategorieController extends AbstractController
     }
 
     #[Route('categorie/{id}', name: 'categorie_content', methods: ['GET'])]
-    public function ContentCategorie(Categorie $categorie): Response
+    public function ContentCategorie(Categorie $categorie, ArticleRepository $articleRepository): Response
     {
-        $articles = $categorie->getArticles();
+        // $articles = $categorie->getArticles();
+        $articles = $articleRepository->findby(['categorie'=>$categorie], ['libelle'=>"ASC"]);
         return $this->render('magasin/contentCat.html.twig', [
             'articles' => $articles,
             'categorie' => $categorie
