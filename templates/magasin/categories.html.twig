@@ -5,7 +5,7 @@
     {% for categorie in categories %}
     <article class="py-3 m-2  bg-purple-100 hover:bg-purple-200 border-2 hover:border-gray-500 shadow-2xl">
         <a href="{{path('categorie_content',{'id': categorie.id})}}">
-            <img class="w-44 h-44" src="{{asset( 'img/categorie/') ~ categorie.img1}} ">
+            <img class="w-44 h-44" src="{{asset( 'img/categorie/') ~ categorie.img1}} " alt="image catégorie">
             <div class="flex justify-center mt-2">
 
                 <p class="w-32 text-center text-base">{{ categorie.nom }}</p>

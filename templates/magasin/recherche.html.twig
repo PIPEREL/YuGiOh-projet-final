@@ -6,7 +6,7 @@
     {% for categorie in categories %}
     <article class="py-3 m-2  bg-purple-100 hover:bg-purple-200 border-2 hover:border-gray-500 shadow-2xl">
         <a href="{{path('categorie_content',{'id': categorie.id})}}">
-            <img class="w-44 h-44" src="{{asset( 'img/categorie/') ~ categorie.img1}} ">
+            <img class="w-44 h-44" src="{{asset( 'img/categorie/') ~ categorie.img1}}" alt="image categorie">
             <div class="flex justify-center mt-2">
 
                 <p class="w-32 text-center text-base">{{ categorie.nom }}</p>
@@ -26,7 +26,7 @@
     <section class="my-4 flex flex-col lg:flex-row flex-wrap justify-center gap-4">
         {% for article in articles %}
         <article class="text-center flex flex-col items-center py-3 px-2 bg-purple-100 hover:bg-purple-200 border-2 hover:border-gray-500 shadow-xl">
-            <img class="w-40" <img src="{{asset('img/article/') ~ article.img}}">
+            <img class="w-40" src="{{asset('img/article/') ~ article.img}}" alt="image article">
             <div class="flex flex-col flex-grow my-2" href="#">
                 <a class="flex flex-col flex-grow justify-center items-center " href="{{path('article_content', {'id' : article.id})}}">
                     <p class="w-44 font-medium hover:underline "> {{article.nom}} </p>
