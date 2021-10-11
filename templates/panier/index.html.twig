@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %} {% block title %}Hello articlePanierController!{% endblock %} {% block body %} {% for message in app.flashes('echecpaiement') %}
+{% extends 'base.html.twig' %} {% block title %}mon panier {% endblock %} {% block body %} {% for message in app.flashes('echecpaiement') %}
 <div class="flex w-full bg-red-600 text-white text-2xl items-center	 justify-center h-16">{{message}}</div>
 {% endfor %}
 <div class="flex flex-col lg:flex-row flex-wrap shadow-md my-10">

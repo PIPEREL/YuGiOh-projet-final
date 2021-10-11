@@ -13,7 +13,7 @@ class CommandeController extends AbstractController
     #[Route('admin/commande', name: 'commande')]
     public function index(CommandeRepository $commandeRepository): Response
     {
-        $commandes = $commandeRepository->findall();
+        $commandes = $commandeRepository->findby([],['Date_creation'=>'DESC']);
         return $this->render('admin/commande/index.html.twig', [
            "commandes" => $commandes, 
         ]);

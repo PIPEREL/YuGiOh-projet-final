@@ -50,12 +50,13 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function findByWord($value)
     {
-        return $this->createQueryBuilder('word')
-        ->andWhere('word.nom LIKE :value')
+        $query = $this->createQueryBuilder('article')
+        ->andWhere('article.nom LIKE :value')
         ->setParameter('value', '%'.$value.'%')
-        ->orderBy('word.id', 'DESC')
+        ->orderBy('article.id', 'DESC')
         ->getQuery()
         ->getResult()
         ;
+        return $query;
     }
 }

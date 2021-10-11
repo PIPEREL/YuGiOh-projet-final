@@ -27,8 +27,10 @@ Class PaiementService
             $protocol ="https";
         }
         $serverName = $_SERVER['SERVER_NAME'];
-
+        $baseurl='';
+        if (isset($_SERVER['REDIRECT_BASE'])){
         $baseurl = $_SERVER['REDIRECT_BASE'];
+        }
 
         $successUrl= $protocol.'://' .$serverName. $baseurl.'/paiement/success/{CHECKOUT_SESSION_ID}';
         $cancelUrl= $protocol.'://' .$serverName. $baseurl .'/paiement/failure/{CHECKOUT_SESSION_ID}';

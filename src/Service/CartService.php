@@ -53,6 +53,9 @@ class CartService
             $cart['elements'][$articleId] = ['article' => $article, 'quantity' => 0];
         }
             $cart['elements'][$articleId]['quantity'] = $quantity;
+            if ($cart['elements'][$articleId]['quantity'] <= 0) {
+                unset($cart['elements'][$articleId]);
+            }
             $this->sessionInterface->set('cart', $cart);
             $cart['total'] = $this->getTotal();
             $this->sessionInterface->set('cart', $cart);

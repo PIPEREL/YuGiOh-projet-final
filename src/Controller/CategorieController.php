@@ -18,7 +18,7 @@ class CategorieController extends AbstractController
     public function index(CategorieRepository $categorieRepository): Response
     {
         return $this->render('admin/categorie/index.html.twig', [
-            'categories' => $categorieRepository->findAll(),
+            'categories' => $categorieRepository->findby([],['date_parution'=>"DESC"]),
         ]);
     }
 
@@ -155,7 +155,7 @@ class CategorieController extends AbstractController
     public function indexClient(CategorieRepository $categorieRepository): Response
     {
         return $this->render('magasin/categories.html.twig', [
-            'categories' => $categorieRepository->findAll(),
+            'categories' => $categorieRepository->findby([],['date_parution'=>"DESC"]),
         ]);
     }
 

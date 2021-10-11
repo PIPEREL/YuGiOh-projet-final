@@ -36,17 +36,17 @@ class CommandeRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Commande
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+    
+    // public function findOneBySomeField($id): ?Commande
+    // {
+    //     return $this->createQueryBuilder('c')   // SELECT * FROM commande AS c
+    //         ->andWhere('c.id = :val')           // WHERE c.id = :val
+    //         ->setParameter('val', $id)          // $req->bindValue(':val', $id)
+    //         ->getQuery()                        // construit la requête
+    //         ->getOneOrNullResult()              // $req->execute()
+    //     ;
+    // }
+    
 
     
     public function findNouveau()

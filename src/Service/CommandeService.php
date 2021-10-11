@@ -44,12 +44,10 @@ class CommandeService
 
     foreach ($panier['elements'] as $element){
         $articleCommande = new ArticleCommande;
-        // $articleCommande->setBook($element['book']);
         $articleCommande->setQuantity($element['quantity']);
         $article = $this->em->getRepository(Article::class)->find($element['article']->getId());
         $article->setStock($article->getStock() - $element['quantity']);
         $article->addarticleCommande($articleCommande);
-        // $this->em->persist($book);
       
         // $element['book']->addarticleCommande($articleCommande);
         $commande->addarticleCommande($articleCommande);

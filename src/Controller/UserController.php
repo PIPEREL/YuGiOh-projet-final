@@ -128,7 +128,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         $user = $userRepository->find($this->getUser());
-        $commandes = $user->getCommandes();
+        $commandes = $commandeRepository->findby(['user'=> $user],['Date_creation' => 'DESC']);
 
 
         return $this->renderForm('user/commande.html.twig', [

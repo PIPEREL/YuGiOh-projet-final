@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %} {% block title %}Hello PaiementController!{% endblock %} {% block body %}
+{% extends 'base.html.twig' %} {% block title %}succes!{% endblock %} {% block body %}
 <div class="h-96">
     <div class="flex flex-col my-5"></div>
     <h2 class="text-3xl text-center font-bold lg:my-21">Votre commande a été effectuée ! </h2>
@@ -8,9 +8,5 @@
     </div>
 </div>
 
-<script>
-    setTimeout(function() {
-        window.location.href = "/synfony2/projetYugi/public/";
-    }, 5000);
-</script>
+<script src="{{asset('js/redirect.js')}}"></script>
 {% endblock %}
