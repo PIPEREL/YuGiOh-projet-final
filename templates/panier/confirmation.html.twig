@@ -65,8 +65,8 @@
             <hr>
             <p>total de la commande</p>
             <p>{{panier.total + panier.livraison.prix}} euro</p>
-            <a href="{{path('panier_valider')}}"><button class="bg-purple-500 font-semibold hover:bg-purple-600 py-3 text-sm text-white uppercase w-full {% if qte == 0 %} opacity-50 {% endif %}" 
-                {% if qte == 0 %} disabled {% endif %}>Payer</button></a>
+            <a href="{{path('panier_valider')}}"><button class="bg-purple-500 font-semibold hover:bg-purple-600 py-3 text-sm text-white uppercase w-full {% if qte == 0 or not panier.adresse %} opacity-50 {% endif %}" 
+                {% if qte == 0 or not panier.adresse  %} disabled {% endif %}>Payer</button></a>
             </a>
         </div>
     </div>

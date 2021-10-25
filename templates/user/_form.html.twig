@@ -1,11 +1,14 @@
 <div class="flex justify-center">
-    {{ form_start(form,{'attr':{'class': 'flex flex-col w-1/2 content-center gap-6 pb-10'}})}}{{ form_widget(form.nom,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}})}}
-    {{ form_widget(form.prenom,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}})}} {{ form_widget(form.email,{'attr':{'class': 'py-2 px-3 rounded-lg
-    border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }} {{ form_widget(form.oldPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2
-    focus:ring-purple-600 focus:border-transparent'}}) }} {{ form_widget(form.plainPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }} {{
-    form_widget(form.confirmPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }}
+    {{ form_start(form,{'attr':{'class': 'flex flex-col w-1/2 content-center gap-6 pb-10'}})}}
+    {{ form_widget(form.nom,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}})}}
+    {{ form_widget(form.prenom,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}})}} 
+    {{ form_widget(form.email,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }} 
+    {{ form_widget(form.oldPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }} 
+    {{ form_widget(form.plainPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }} 
+    {{ form_widget(form.confirmPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }}
     <div id="alerte_mdp" class="self-center text-xs text-red-500 font-bold"></div>
     <div class="flex justify-center items-center gap-3 ">
-        <button id="submit" class="self-center w-1/3 bg-gray-500 hover:bg-gray-700 text-white py-1 mt-5 rounded" disabled>{{ button_label|default('Save') }}</button> {{ form_end(form) }}
+        <button id="submit" class="self-center w-1/3 bg-gray-500 hover:bg-gray-700 text-white py-1 mt-5 rounded" disabled>{{ button_label|default('Save') }}</button> 
+    {{ form_end(form) }}
     </div>
 </div>

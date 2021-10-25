@@ -34,11 +34,6 @@ class ArticleController extends AbstractController
             $infoImg->move($this->getParameter('article_folder'), $nomImg);
             $article->setImg($nomImg);
 
-
-
-
-
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
             $entityManager->flush();

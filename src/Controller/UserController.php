@@ -10,6 +10,7 @@ use App\Form\UserEditType;
 use App\Form\AdressesUserType;
 use App\Repository\UserRepository;
 use App\Repository\CommandeRepository;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,7 +37,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword(
-                $passwordEncoder->encodePassword(
+                $passwordEncoder->encodePassword( // bcrypt 
                     $user,
                     $form->get('plainPassword')->getData()
                 )
@@ -157,7 +158,7 @@ class UserController extends AbstractController
     }
 
     #[Route('user/info', name: 'currentuser_info')]
-    public function myinfo()
+    public function myinfo(Request $request):response
     {
         if ($this->getUser() == null ) {
             return $this->redirectToRoute('app_login');
@@ -165,6 +166,26 @@ class UserController extends AbstractController
        
         $user = $this->getUser();
         // $details = $commande->getArticleCommandes();
+        if ($request->request->get('toggle') !== null) {
+            $request = Request::createFromGlobals();
+            $cookies = $request->cookies->get('lightmode');
+            $response = new Response();
+
+            if($request->request->get('toggle-night') == "on"){
+                $cookie = Cookie::create('lightmode')
+                    ->withValue("on")
+                    ->withExpires(time() + 36000)
+                    ->withHttpOnly(false);      
+            }else{
+                $cookie = Cookie::create('lightmode')
+                ->withValue("off")
+                ->withExpires(time() + 36000)
+                ->withHttpOnly(false);      
+            }
+            $response->headers->setCookie($cookie);
+            $response->sendHeaders();
+            return $this->redirectToRoute('currentuser_info');
+        }
 
 
         return $this->renderForm('user/mesinformations.html.twig', [

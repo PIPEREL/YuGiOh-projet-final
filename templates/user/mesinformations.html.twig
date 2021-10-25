@@ -19,7 +19,14 @@
             <h2 class="font-medium pb-2 mb-2 border-b-2 ">adresse email</h2>
             <div class="flex-wrap">{{ user.email }} </div>
         </div>
-
+        <form action="" method="post">
+             <input type='hidden' value='0' name='toggle'>
+            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                <input type="checkbox" name="toggle-night" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" {% if app.request.cookies.get('lightmode') == "on" %} checked {% endif %}  onchange="this.form.submit()"/>
+                <label for="toggle-night" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+            </div>
+            <label for="toggle-night" class="text-xs text-gray-700">light mode</label>
+        </form>
         <a class="self-center" href="{{path('currentuser_edit')}}"> <button class="self-center w-48 bg-purple-500 hover:bg-purple-700 text-white py-1 mt-5 rounded"><i class="fas fa-edit"></i> modifier</button></a>
     </div>
     <a href="{{ path('currentuser_index') }}" class=" font-semibold text-indigo-600 align-middle text-sm ml-5 "><i class="fa fa-arrow-left pb-10 " aria-hidden="true"></i> retour</a> {% endblock %}

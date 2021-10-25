@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}"> {% block stylesheets %} {#{{ encore_entry_link_tags('app') }}#} {% endblock %}
 </head>
 
-<body class="bg-gradient-to-b from-dark1 to-dark2 bg-no-repeat bg-fixed h-screen">
+<body class=" bg-gradient-to-b {% if app.request.cookies.get('lightmode') == "on" %} from-gray-400 to-gray-200 {% else %} from-dark1 to-dark2 {% endif %} bg-no-repeat bg-fixed h-screen">
     <script src="https://js.stripe.com/v3/"></script>
     <div class="lg:container mx-auto flex flex-col ">
         <header class="bg-red-800 text-white flex flex-col lg:h-auto">

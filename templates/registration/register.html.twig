@@ -1,13 +1,19 @@
 {% extends 'base.html.twig' %} {% block title %}S'inscrire{% endblock %} {% block body %}
+
 <h2 class="pt-4 ml-4 text-4xl font-bold">Inscription</h2>
 <hr class="my-5">
+{% for message in app.flashes('error') %}
+<div class="flex w-full bg-red-400 text-white text-2xl items-center justify-center h-16">{{message}}</div>
+{% endfor %}
 <div class="flex justify-center px-32 py-14">
     <div class="flex flex-grow items-center justify-center bg-gray-200 mx-32 shadow-xl rounded ">
-        {{ form_start(registrationForm,{'attr':{'class': 'flex flex-col w-3/4 content-between gap-4 py-14 '}}) }} {{ form_widget(registrationForm.nom,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600
-        focus:border-transparent'}})}} {{ form_widget(registrationForm.prenom,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}})}} {{ form_widget(registrationForm.email,{'attr':{'class':
-        'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }} {{ form_widget(registrationForm.plainPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300
-        mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }} {{ form_widget(registrationForm.confirmPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2
-        focus:ring-purple-600 focus:border-transparent'}}) }}
+        {{ form_start(registrationForm,{'attr':{'class': 'flex flex-col w-3/4 content-between gap-4 py-14 '}}) }}
+         {{ form_widget(registrationForm.nom,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600
+        focus:border-transparent'}})}} 
+        {{ form_widget(registrationForm.prenom,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}})}} 
+        {{ form_widget(registrationForm.email,{'attr':{'class':'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }} 
+        {{ form_widget(registrationForm.plainPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }} 
+        {{ form_widget(registrationForm.confirmPassword,{'attr':{'class': 'py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }}
         <div id="alerte_mdp" class="self-center text-xs text-red-500 font-bold"></div>
         <div class="flex justify-center items-center gap-3 ">
             {{ form_widget(registrationForm.agreeTerms)}}
@@ -15,7 +21,6 @@
         </div>
 
         <input id="submit" class=" w-5/12 self-center bg-gray-500 hover:bg-gray-700 text-white  mt-4 py-1 rounded" type="submit" value="s'inscrire" disabled> {{ form_end(registrationForm) }} {{ include('registration/alert.html.twig') }}
-
 
     </div>
 </div>

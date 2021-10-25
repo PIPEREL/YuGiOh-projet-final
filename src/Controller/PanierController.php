@@ -20,35 +20,35 @@ class PanierController extends AbstractController
     #[Route('/panier', name: 'panier')]
     public function index(CartService $cartService, Request $request): Response
     {
-       
+
         if ($this->getUser() == null) {
             return $this->redirectToRoute('app_login');
         }
-        $livraison= [];
+        $livraison = [];
         $form = $this->createFormBuilder($livraison)
-        ->add(
-            'Livraison',
-            ChoiceType::class,
-            [
-                'choices' => ['Livraison non suivie - 5.00 €' => 'untracked', 'Livraison Suivie - 10.00 €' => 'tracked'],
-                'expanded' => false,
-                'multiple' => false,
-            ]
-        )
-        ->getForm();
+            ->add(
+                'Livraison',
+                ChoiceType::class,
+                [
+                    'choices' => ['Livraison non suivie - 5.00 €' => 'untracked', 'Livraison Suivie - 10.00 €' => 'tracked'],
+                    'expanded' => false,
+                    'multiple' => false,
+                ]
+            )
+            ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $cartService->livraison($form->getData());
         }
-        
+
         $panier = $cartService->get();
-        $qte = $cartService->getQteTotal();  
+        $qte = $cartService->getQteTotal();
         return $this->render('panier/index.html.twig', [
-          'panier' => $panier,
-          'qte' => $qte,
-          'form' => $form->createView(),
+            'panier' => $panier,
+            'qte' => $qte,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -60,56 +60,54 @@ class PanierController extends AbstractController
         }
         $panier = $cartService->get();
 
-        
+
         // $user = $userRepository->find($this->getUser());
         $adresses = $this->getUser()->getAdresses();
 
-        $qte = $cartService->getQteTotal();  
+        $qte = $cartService->getQteTotal();
         return $this->render('panier/confirmation.html.twig', [
-          'panier' => $panier,
-          'qte' => $qte,
-          'adresses' => $adresses
+            'panier' => $panier,
+            'qte' => $qte,
+            'adresses' => $adresses
         ]);
     }
-    
+
     #[Route('/panier/valider', name: 'panier_valider')]
-    public function validate(PaiementService $paymentService, CartService $cartService, ArticleRepository $articleRepository):Response
+    public function validate(PaiementService $paymentService, CartService $cartService, ArticleRepository $articleRepository): Response
     {
         if ($this->getUser() == null) {
             return $this->redirectToRoute('app_login');
         }
         $panier = $cartService->get();
-        $change = false; 
-        foreach($panier['elements'] as $element){
+        $change = false;
+        foreach ($panier['elements'] as $element) {
             $article = $articleRepository->find($element['article']);
             $articleStock = $article->getStock();
-            if($articleStock < $element['quantity']){
+            if ($articleStock < $element['quantity']) {
                 $cartService->setQuantity($article, $articleStock);
                 $change = true;
             }
         }
-        if ($change == true){
+        if ($change == true) {
             $this->addFlash('echecpaiement', 'Stock insuffisant pour certains articles, votre panier a été mis à jour.');
             return $this->redirectToRoute('panier');
         }
-            $stripeSessionId = $paymentService->create();
+        $stripeSessionId = $paymentService->create();
         return $this->render('panier/redirect.html.twig', ['stripeSessionId' => $stripeSessionId]);
-        
-
     }
 
 
 
 
     #[Route('/panier/ajouter', name: 'panier_add')]
-    public function add(Request $request,ArticleRepository $articleRepository, CartService $CartService):Response
+    public function add(Request $request, ArticleRepository $articleRepository, CartService $CartService): Response
     {
         if ($this->getUser() == null) {
             return $this->redirectToRoute('app_login');
         }
 
         if ($request->request->get('id') !== null) {
-            $article = $articleRepository->find( $request->request->get('id'));
+            $article = $articleRepository->find($request->request->get('id'));
             $quantity = $request->request->get('quantity');
             $CartService->add($article, $quantity);
         }
@@ -118,49 +116,49 @@ class PanierController extends AbstractController
     }
 
     #[Route('/panier/plus/{id}', name: 'panier_plus')]
-    public function plus(Article $article, CartService $CartService):Response
+    public function plus(Article $article, CartService $CartService): Response
     {
         $CartService->add($article);
         return $this->redirectToRoute('panier');
     }
 
     #[Route('/panier/minus/{id}', name: 'panier_minus')]
-    public function minus(Article $article, CartService $CartService):Response
+    public function minus(Article $article, CartService $CartService): Response
     {
         $CartService->minus($article);
         return $this->redirectToRoute('panier');
     }
 
     #[Route('/panier/effacer/{id}', name: 'panier_effacer')]
-    public function remove(Article $article, CartService $CartService):Response
+    public function remove(Article $article, CartService $CartService): Response
     {
         $CartService->removeArticle($article);
         return $this->redirectToRoute('panier');
     }
 
     #[Route('/panier/clear', name: 'panier_vider')]
-    public function clear(CartService $CartService):Response
+    public function clear(CartService $CartService): Response
     {
         $CartService->clear();
         return $this->redirectToRoute('home');
     }
 
-    
+
     #[Route('/panier/setquantity/{id}', name: 'panier_setQte')]
-    public function setquantity(Request $request,Article $article, CartService $CartService):Response
+    public function setquantity(Request $request, Article $article, CartService $CartService): Response
     {
         if ($this->getUser() == null) {
             return $this->redirectToRoute('app_login');
         }
 
-        if ($request->request->get('quantity') !== null && $request->request->get('quantity') != 0 ) {
+        if ($request->request->get('quantity') !== null && $request->request->get('quantity') != 0) {
             $quantity = $request->request->get('quantity');
-            if($quantity<= $article->getStock()){
-            $CartService->setquantity($article, $quantity);
-            }else{
-                $CartService->setquantity($article,$article->getStock());
+            if ($quantity <= $article->getStock()) {
+                $CartService->setquantity($article, $quantity);
+            } else {
+                $CartService->setquantity($article, $article->getStock());
             }
-        }else{
+        } else {
             $CartService->removeArticle($article);
         }
 
@@ -168,22 +166,21 @@ class PanierController extends AbstractController
     }
 
     #[Route('/panier/adresse', name: 'panier_adresse')]
-    public function setAdresse(Request $request, AdressesRepository $adressesRepository , CartService $CartService):Response
+    public function setAdresse(Request $request, AdressesRepository $adressesRepository, CartService $CartService): Response
     {
         if ($this->getUser() == null) {
             return $this->redirectToRoute('app_login');
         }
-        if ($request->request->get('adresse') !== null){
+        if ($request->request->get('adresse') !== null) {
             $adresse = $adressesRepository->find($request->request->get('adresse'));
-            
-            if($adresse->getUser() != $this->getUser()){
+
+            if ($adresse->getUser() != $this->getUser()) {
                 return $this->redirectToRoute('home');
             }
 
             $CartService->setadresse($adresse);
-            
         }
-        
+
         return $this->redirectToRoute('panier_confirmation');
     }
 }

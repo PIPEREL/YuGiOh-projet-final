@@ -292,3 +292,32 @@ composer require dompdf/dompdf
 ## webpack encore ##
 
 /!\ penser au yarn encore dev
+
+
+
+# installer tailwind :
+
+npm init
+
+npm install tailwindcss postcss-cli autoprefixer -D 
+
+ajouter /node_modules au git ignore
+
+npx tailwind init tailwind.js -full
+
+créer un postcss.config.js
+et coller =>s
+const tailwindcss = require('tailwindcss');
+module.exports = {
+    plugins: [
+        tailwindcss('./tailwind.js'),
+        require('autoprefixer')
+    ],
+};
+
+créer un dossier dans public : tailwind.css 
+et coller dedans :
+
+npx postcss tailwind.css -o style.css
+
+npx postcss public/css/tailwind.css -o public/css/style.css  // répéter cette ligne a chaque modif.
